@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Gold Palace — Where Legacy Meets Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#050303;--void2:#0C0806;--void3:#120A04;
+  --gold:#C9A84C;--gold2:#FFD700;--gold3:#B8860B;--gold4:#F0C040;
+  --plat:#F5EDD6;--plat2:#D4C5A0;--plat3:#8A7A5A;
+  --g1:linear-gradient(135deg,#B8860B,#FFD700,#C9A84C,#FFD700,#8B6914);
+  --g2:linear-gradient(135deg,#8B6914,#C9A84C,#F0C040,#C9A84C,#8B6914);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--void);color:var(--plat);font-family:"Cormorant Garamond",serif;overflow-x:hidden;cursor:none}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:10000;background:var(--void);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s,transform 1s}
+#loader.done{opacity:0;pointer-events:none;transform:scale(1.03)}
+.ld-crown{font-size:3.5rem;animation:ldcrown 1.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 25px rgba(201,168,76,.9))}
+@keyframes ldcrown{from{transform:translateY(0) scale(1)}to{transform:translateY(-10px) scale(1.06)}}
+.ld-title{font-family:"Cinzel",serif;font-size:2.2rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.4em;margin:.9rem 0 .3rem;opacity:0;animation:fdin .9s ease .3s forwards}
+.ld-sub{font-family:"Rajdhani",sans-serif;font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--plat3);margin-bottom:2.5rem;opacity:0;animation:fdin .7s ease .7s forwards}
+@keyframes fdin{to{opacity:1}}
+.ld-bar{width:240px;height:1px;background:rgba(201,168,76,.12);position:relative;overflow:hidden}
+.ld-fill{position:absolute;top:0;left:-100%;height:100%;background:linear-gradient(to right,transparent,var(--gold2),var(--gold),var(--gold2),transparent);animation:ldrun 2s ease .5s forwards}
+@keyframes ldrun{to{left:100%}}
+.ld-txt{font-family:"Cinzel",serif;font-size:.62rem;color:var(--gold3);letter-spacing:.28em;margin-top:.85rem;opacity:0;animation:fdin .5s ease 1.1s forwards}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--gold2);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .18s,height .18s}
+#cur-r{position:fixed;width:28px;height:28px;border-radius:50%;border:1px solid rgba(201,168,76,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .07s linear}
+body.hov #cur{width:18px;height:18px}
+body.hov #cur-r{width:46px;height:46px;border-color:var(--gold)}
+
+/* CANVAS */
+#bgc{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6}
+
+/* RATE TICKER */
+#rtick{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(5,3,2,.95);border-bottom:1px solid rgba(201,168,76,.18);padding:.28rem 0;overflow:hidden}
+.rtk-track{display:flex;gap:4rem;animation:rtkmq 32s linear infinite;width:max-content;align-items:center}
+.rtk-item{font-family:"Rajdhani",sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.13em;white-space:nowrap;color:var(--plat3);display:flex;align-items:center;gap:.5rem}
+.rtk-item b{color:var(--gold4)}.tup{color:#4CAF50}.tdn{color:#f44336}
+.lpulse{width:5px;height:5px;border-radius:50%;background:#4CAF50;animation:lpa 1.2s ease-in-out infinite;flex-shrink:0}
+@keyframes lpa{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes rtkmq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* NAV */
+nav{position:fixed;top:24px;left:0;right:0;z-index:800;padding:.9rem 5rem;display:flex;justify-content:space-between;align-items:center;transition:all .5s cubic-bezier(.23,1,.32,1)}
+nav.scrolled{top:0;padding:.7rem 5rem;background:rgba(5,3,2,.97);border-bottom:1px solid rgba(201,168,76,.12);backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,.85)}
+.nlogo{display:flex;align-items:center;gap:.7rem;cursor:none}
+.ncrown{font-size:1.6rem;filter:drop-shadow(0 0 10px rgba(201,168,76,.8))}
+.nlogo-text{display:flex;flex-direction:column;line-height:1.1}
+.nlogo-main{font-family:"Cinzel",serif;font-size:.95rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.22em}
+.nlogo-sub{font-family:"Rajdhani",sans-serif;font-size:.42rem;letter-spacing:.45em;color:var(--plat3);text-transform:uppercase}
+.nlinks{display:flex;gap:2rem;list-style:none}
+.nlinks a{font-family:"Rajdhani",sans-serif;font-size:.7rem;font-weight:600;color:var(--plat3);text-decoration:none;letter-spacing:.17em;text-transform:uppercase;transition:color .3s;cursor:none;position:relative}
+.nlinks a::after{content:"";position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--g1);transition:width .3s}
+.nlinks a:hover{color:var(--gold4)}.nlinks a:hover::after{width:100%}
+.nright{display:flex;align-items:center;gap:.6rem}
+.nico{width:34px;height:34px;border:1px solid rgba(201,168,76,.14);background:rgba(201,168,76,.04);display:flex;align-items:center;justify-content:center;color:var(--plat3);cursor:none;transition:all .3s;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px);position:relative}
+.nico:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.5);color:var(--gold4)}
+.nbadge{position:absolute;top:-5px;right:-5px;width:14px;height:14px;background:var(--gold);border-radius:50%;font-family:"Rajdhani",sans-serif;font-size:.5rem;font-weight:700;color:var(--void);display:flex;align-items:center;justify-content:center}
+.nbook{font-family:"Rajdhani",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1.5rem;background:transparent;border:1px solid var(--gold);color:var(--gold);cursor:none;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:all .3s}
+.nbook:hover{background:var(--gold);color:var(--void)}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden}
+.hbg{position:absolute;inset:0;background:linear-gradient(135deg,var(--void) 0%,rgba(15,8,2,.96) 100%),url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1600&q=75');background-size:cover;background-position:center right;opacity:.32}
+.hbg2{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 60% 50%,rgba(201,168,76,.1),transparent 60%),radial-gradient(ellipse 35% 40% at 12% 80%,rgba(139,105,20,.055),transparent 55%)}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.022) 1px,transparent 1px);background-size:65px 65px}
+.h-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;max-width:1440px;width:100%;padding:0 5rem;padding-top:85px;margin:0 auto}
+/* HERO LEFT */
+.heyebrow{font-family:"Rajdhani",sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.55em;text-transform:uppercase;color:var(--gold3);margin-bottom:1.5rem;display:flex;align-items:center;gap:.9rem;opacity:0;animation:hani .9s ease .2s forwards}
+.heyebrow::before{content:"";width:40px;height:1px;background:linear-gradient(to right,transparent,var(--gold3))}
+@keyframes hani{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.htagline{font-family:"Cormorant Garamond",serif;font-size:1rem;font-style:italic;color:var(--plat3);margin-bottom:.7rem;opacity:0;animation:hani .8s ease .3s forwards}
+h1.hh{font-family:"Playfair Display",serif;font-size:clamp(3.6rem,5.2vw,6.5rem);font-weight:900;line-height:.92;letter-spacing:-.02em;margin-bottom:.8rem;opacity:0;animation:hani .9s ease .4s forwards}
+.hw1{display:block;color:var(--plat);font-style:italic}
+.hw2{display:block;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hw3{display:block;color:var(--plat);font-size:52%;font-weight:400;letter-spacing:.08em}
+.hdiv{width:80px;height:1px;background:linear-gradient(to right,var(--gold3),transparent);margin:1.4rem 0;opacity:0;animation:hani .7s ease .55s forwards}
+.hp{font-size:1.1rem;font-weight:300;font-style:italic;color:rgba(245,237,214,.5);line-height:1.85;max-width:420px;margin-bottom:2.5rem;opacity:0;animation:hani .9s ease .6s forwards}
+.hctas{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:hani .9s ease .75s forwards}
+.btn-p{font-family:"Rajdhani",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.95rem 2.8rem;background:var(--g1);color:var(--void);border:none;cursor:none;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);transition:all .35s;position:relative;overflow:hidden}
+.btn-p::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18),transparent);opacity:0;transition:opacity .3s}
+.btn-p:hover::after{opacity:1}.btn-p:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(201,168,76,.55)}
+.btn-o{font-family:"Rajdhani",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.95rem 2rem;border:1px solid rgba(201,168,76,.45);color:var(--gold4);background:transparent;cursor:none;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);transition:all .35s}
+.btn-o:hover{background:rgba(201,168,76,.1);border-color:var(--gold);transform:translateY(-3px)}
+.btn-g{font-family:"Rajdhani",sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3);background:none;border:none;cursor:none;display:flex;align-items:center;gap:.6rem;transition:color .3s;padding:.9rem 0}
+.btn-g:hover{color:var(--plat)}.btn-g svg{transition:transform .3s}.btn-g:hover svg{transform:translateX(4px)}
+.htrust{display:flex;gap:1.5rem;margin-top:2.2rem;flex-wrap:wrap;opacity:0;animation:hani .9s ease .9s forwards}
+.htb{display:flex;align-items:center;gap:.4rem;font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--plat3)}
+.htbd{width:3px;height:3px;border-radius:50%;background:var(--gold3);flex-shrink:0}
+
+/* HERO RIGHT 3D SCENE */
+.hright{position:relative;height:600px;display:flex;align-items:center;justify-content:center;opacity:0;animation:hani 1.2s ease .5s forwards}
+.hscene{position:relative;width:500px;height:500px;transform-style:preserve-3d;perspective:1000px}
+/* main aura */
+.haura{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.26) 0%,rgba(201,168,76,.07) 40%,transparent 70%);animation:hglow 3.5s ease-in-out infinite}
+@keyframes hglow{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+/* orbits */
+.horb{position:absolute;border-radius:50%;pointer-events:none}
+.ho1{inset:-18px;border:1px solid rgba(201,168,76,.2);animation:ocw 10s linear infinite}
+.ho2{inset:-42px;border:1px dashed rgba(201,168,76,.1);animation:occw 16s linear infinite}
+.ho3{inset:-72px;border:1px solid rgba(201,168,76,.06);animation:ocw 26s linear infinite}
+.ho4{inset:-108px;border:1px dashed rgba(201,168,76,.035);animation:occw 38s linear infinite}
+@keyframes ocw{to{transform:rotate(360deg)}}@keyframes occw{to{transform:rotate(-360deg)}}
+.hodot{position:absolute;width:5px;height:5px;background:var(--gold);border-radius:50%;top:calc(50% - 2.5px);left:-2.5px;box-shadow:0 0 10px var(--gold)}
+
+/* 3D NECKLACE */
+.hnk-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;animation:nkrot 18s linear infinite}
+@keyframes nkrot{to{transform:rotateY(360deg) rotateX(10deg)}}
+.hnk-bob{animation:nkbob 5s ease-in-out infinite;display:flex;flex-direction:column;align-items:center}
+@keyframes nkbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+/* arc */
+.hnk-arc{width:240px;height:120px;border:5px solid transparent;border-top:5px solid var(--gold);border-radius:120px 120px 0 0;box-shadow:0 0 28px rgba(201,168,76,.7),0 0 55px rgba(201,168,76,.22);position:relative}
+.hnk-arc::before{content:"";position:absolute;inset:5px;border:2px solid transparent;border-top:2px solid rgba(255,215,0,.35);border-radius:120px 120px 0 0}
+.hndot{position:absolute;width:8px;height:8px;border-radius:50%;background:conic-gradient(from 0deg,#C9A84C,#FFD700,#C9A84C);box-shadow:0 0 10px rgba(201,168,76,.9);transform:translate(-50%,-50%)}
+/* pendant */
+.hnk-pend{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:2px}
+.hnk-pcl{width:6px;height:6px;border-radius:50%;border:2px solid var(--gold);background:transparent}
+.hnk-pmain{width:85px;height:108px;background:conic-gradient(from 0deg,#7A5C14,#C9A84C,#FFD700,#F0C040,#C9A84C,#FFD700,#C9A84C,#7A5C14);clip-path:polygon(25% 0,75% 0,100% 22%,100% 60%,75% 85%,50% 100%,25% 85%,0 60%,0 22%);box-shadow:0 0 45px rgba(201,168,76,.85),0 0 90px rgba(201,168,76,.3),inset 0 6px 20px rgba(255,255,255,.2);position:relative;animation:pshine 3s ease-in-out infinite}
+@keyframes pshine{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45)}}
+.hnk-gem{position:absolute;width:30px;height:30px;background:radial-gradient(circle at 28% 22%,rgba(255,255,255,1),rgba(200,235,255,.9) 35%,rgba(130,185,255,.7) 65%,rgba(80,140,220,.5));clip-path:polygon(50% 0,100% 38%,80% 100%,20% 100%,0 38%);box-shadow:0 0 28px rgba(180,225,255,1),0 0 55px rgba(130,180,255,.6);top:50%;left:50%;transform:translate(-50%,-50%);animation:gtw 2s ease-in-out infinite}
+@keyframes gtw{0%,100%{opacity:.85;filter:brightness(1)}50%{opacity:1;filter:brightness(1.9)}}
+
+/* floating gems */
+.fgems{position:absolute;inset:0;pointer-events:none}
+.fgem{position:absolute;animation:fgf 5s ease-in-out infinite}
+.fgem:nth-child(1){top:6%;left:48%;animation-delay:0s}
+.fgem:nth-child(2){top:26%;right:3%;animation-delay:1.1s}
+.fgem:nth-child(3){bottom:18%;right:6%;animation-delay:2.2s}
+.fgem:nth-child(4){bottom:18%;left:6%;animation-delay:3.3s}
+.fgem:nth-child(5){top:26%;left:3%;animation-delay:4.4s}
+@keyframes fgf{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.2) translateY(-10px)}}
+.fgs{width:14px;height:14px;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.95),rgba(200,235,255,.85) 40%,rgba(130,185,255,.6));clip-path:polygon(50% 0,100% 38%,80% 100%,20% 100%,0 38%);box-shadow:0 0 14px rgba(180,225,255,.9)}
+
+/* hero float cards */
+.hfc{position:absolute;background:rgba(10,6,2,.9);border:1px solid rgba(201,168,76,.25);padding:.8rem 1rem;min-width:145px;backdrop-filter:blur(10px);opacity:0;animation:hani 1s ease forwards;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+.hfc:nth-child(1){top:8%;right:-8%;animation-delay:1.3s}
+.hfc:nth-child(2){bottom:22%;right:-4%;animation-delay:1.6s}
+.hfc:nth-child(3){bottom:10%;left:-4%;animation-delay:1.9s}
+.hfc-l{font-family:"Rajdhani",sans-serif;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3);margin-bottom:.2rem}
+.hfc-v{font-family:"Cinzel",serif;font-size:.9rem;font-weight:700;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hfc-s{font-family:"Rajdhani",sans-serif;font-size:.52rem;color:var(--gold3);margin-top:.1rem}
+
+/* hero stats bar */
+.hstats{position:absolute;bottom:0;left:0;right:0;z-index:3;display:flex;background:rgba(5,3,2,.72);border-top:1px solid rgba(201,168,76,.1);backdrop-filter:blur(12px)}
+.hs{padding:1.35rem 0;flex:1;text-align:center;border-right:1px solid rgba(201,168,76,.08)}
+.hs:last-child{border-right:none}
+.hs-v{font-family:"Cinzel",serif;font-size:1.45rem;font-weight:700;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:.18rem}
+.hs-l{font-family:"Rajdhani",sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+
+/* MARQUEE */
+.mqband{position:relative;z-index:1;overflow:hidden;background:linear-gradient(90deg,rgba(30,18,0,.65),rgba(201,168,76,.04),rgba(30,18,0,.65));border-top:1px solid rgba(201,168,76,.16);border-bottom:1px solid rgba(201,168,76,.16);padding:.62rem 0}
+.mqt{display:flex;gap:3rem;animation:rtkmq 38s linear infinite;width:max-content}
+.mqt span{font-family:"Rajdhani",sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.27em;text-transform:uppercase;color:var(--gold3);white-space:nowrap;display:flex;align-items:center;gap:.7rem}
+.mqt span::before{content:"◆";font-size:.38rem}
+
+/* TRUST STRIP */
+#tstrip{padding:2.2rem 5rem;border-bottom:1px solid rgba(201,168,76,.08);background:rgba(8,5,2,.8)}
+.ts-in{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.tsi{display:flex;align-items:center;gap:.7rem;flex:1;min-width:150px}
+.tsi-icon{width:40px;height:40px;border:1px solid rgba(201,168,76,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;background:rgba(201,168,76,.05)}
+.tsi-t{font-family:"Cinzel",serif;font-size:.72rem;font-weight:600;color:var(--plat);margin-bottom:.08rem}
+.tsi-s{font-family:"Rajdhani",sans-serif;font-size:.58rem;letter-spacing:.1em;color:var(--plat3)}
+.tsdiv{width:1px;height:38px;background:rgba(201,168,76,.1);flex-shrink:0}
+
+/* SECTION UTILS */
+section{position:relative;z-index:1}
+.slbl{font-family:"Rajdhani",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.48em;text-transform:uppercase;color:var(--gold3);margin-bottom:.85rem;display:flex;align-items:center;gap:.7rem}
+.slbl::before{content:"";width:18px;height:1px;background:var(--gold3)}
+.slbl-c{justify-content:center}.slbl-c::before{display:none}.slbl-c::after{content:"";width:18px;height:1px;background:var(--gold3)}
+.stitle{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,3.1vw,3.4rem);font-weight:700;line-height:1.05;margin-bottom:.95rem}
+.stitle .ig{font-style:italic;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ssub{font-size:.98rem;font-weight:300;font-style:italic;color:rgba(245,237,214,.42);line-height:1.88}
+
+/* SHOP BY CATEGORY */
+#cats{padding:7rem 5rem}
+.cats-in{max-width:1440px;margin:0 auto}
+.cats-scroll{display:flex;gap:1.4rem;overflow-x:auto;padding-bottom:.5rem;scrollbar-width:none}
+.cats-scroll::-webkit-scrollbar{display:none}
+.cpill{display:flex;flex-direction:column;align-items:center;gap:.75rem;min-width:90px;flex-shrink:0;cursor:none}
+.cpill-img{width:76px;height:76px;border-radius:50%;border:1px solid rgba(201,168,76,.2);background:linear-gradient(145deg,rgba(30,18,2,.95),rgba(10,6,1,.98));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:all .4s;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.cpill:hover .cpill-img{border-color:var(--gold);box-shadow:0 0 22px rgba(201,168,76,.5),0 0 44px rgba(201,168,76,.18);transform:scale(1.08)}
+.cpill-img::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(201,168,76,.18),transparent 60%)}
+.cpill-ico{font-size:1.75rem;position:relative;z-index:1;filter:drop-shadow(0 0 8px rgba(201,168,76,.6))}
+.cpill-n{font-family:"Rajdhani",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--plat3);text-align:center;transition:color .3s}
+.cpill:hover .cpill-n{color:var(--gold4)}
+
+/* 3D VIEWER */
+#viewer{padding:0 5rem 7rem}
+.vwr-in{max-width:1440px;margin:0 auto}
+.vwr-box{display:grid;grid-template-columns:270px 1fr 330px;border:1px solid rgba(201,168,76,.12);background:rgba(8,5,2,.85);min-height:520px}
+.vl{border-right:1px solid rgba(201,168,76,.1);padding:1.8rem 1.4rem;display:flex;flex-direction:column;gap:1rem}
+.vl-title{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:var(--plat);margin-bottom:.4rem;line-height:1.2}
+.vfeat{display:flex;align-items:flex-start;gap:.65rem;padding:.65rem;border:1px solid rgba(201,168,76,.08);transition:all .3s;cursor:none}
+.vfeat:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.04)}
+.vfeat-ico{font-size:1.05rem;flex-shrink:0}
+.vft{font-family:"Rajdhani",sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--plat);margin-bottom:.1rem}
+.vfd{font-size:.76rem;font-style:italic;color:var(--plat3)}
+.v3dbtn{margin-top:auto;font-family:"Rajdhani",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.82rem;border:1px solid var(--gold3);color:var(--gold4);background:none;cursor:none;transition:all .3s;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.v3dbtn:hover{background:var(--g1);color:var(--void);border-color:transparent}
+/* center */
+.vc{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(12,7,1,.98),rgba(5,3,1,.99));padding:2rem}
+.vc-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(201,168,76,.12),transparent 62%)}
+.vc-nav{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;left:1rem;right:1rem;pointer-events:none}
+.vc-arr{width:36px;height:36px;border:1px solid rgba(201,168,76,.2);background:rgba(5,3,2,.7);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:none;pointer-events:all;transition:all .3s;font-size:.95rem}
+.vc-arr:hover{background:rgba(201,168,76,.14);border-color:rgba(201,168,76,.5)}
+.vc-ring{transform-style:preserve-3d;animation:vcrot 12s linear infinite}
+@keyframes vcrot{to{transform:rotateY(360deg) rotateX(8deg)}}
+.vc-ro{width:190px;height:190px;border-radius:50%;background:conic-gradient(from 0deg,#5C4210,#C9A84C,#FFD700,#F0C040,#C9A84C,#FFD700,#C9A84C,#8B6914,#FFD700,#C9A84C,#5C4210);display:flex;align-items:center;justify-content:center;box-shadow:0 0 55px rgba(201,168,76,.75),0 0 110px rgba(201,168,76,.2),inset 0 0 40px rgba(0,0,0,.6)}
+.vc-ri{width:60%;height:60%;border-radius:50%;background:radial-gradient(circle at 28% 28%,rgba(255,255,255,.4),rgba(120,88,20,.8));box-shadow:inset 0 0 24px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.vc-gem{width:38px;height:38px;background:radial-gradient(circle at 28% 22%,rgba(255,255,255,.95),rgba(200,235,255,.85) 35%,rgba(130,185,255,.7) 65%,rgba(80,140,220,.5));clip-path:polygon(50% 0,100% 38%,80% 100%,20% 100%,0 38%);box-shadow:0 0 30px rgba(180,225,255,1),0 0 60px rgba(130,180,255,.5);animation:gtw 2s ease-in-out infinite}
+.vc-dots{display:flex;gap:.45rem;margin-top:1rem}
+.vc-dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.3);cursor:none;transition:all .3s}
+.vc-dot.act{background:var(--gold);width:18px;border-radius:3px}
+.vc-thumbs{display:flex;gap:.55rem;margin-top:.7rem}
+.vc-th{width:42px;height:42px;border:1px solid rgba(201,168,76,.18);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:none;transition:all .3s;background:rgba(15,9,2,.8)}
+.vc-th:hover,.vc-th.act{border-color:var(--gold);background:rgba(201,168,76,.1)}
+/* right */
+.vr{padding:1.8rem;border-left:1px solid rgba(201,168,76,.1);display:flex;flex-direction:column}
+.vr-tag{font-family:"Rajdhani",sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);margin-bottom:.35rem}
+.vr-name{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;color:var(--plat);margin-bottom:.25rem}
+.vr-ref{font-family:"Rajdhani",sans-serif;font-size:.6rem;color:var(--plat3);letter-spacing:.12em;margin-bottom:.9rem}
+.vr-price{font-family:"Cinzel",serif;font-size:2rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.vr-tax{font-family:"Rajdhani",sans-serif;font-size:.58rem;color:var(--plat3);letter-spacing:.1em;margin-bottom:1.1rem}
+.vr-specs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem}
+.spec{padding:.55rem .75rem;border:1px solid rgba(201,168,76,.1);background:rgba(201,168,76,.03)}
+.spec-i{font-size:.8rem;margin-bottom:.18rem}
+.spec-l{font-family:"Rajdhani",sans-serif;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--plat3);margin-bottom:.08rem}
+.spec-v{font-family:"Rajdhani",sans-serif;font-size:.65rem;font-weight:700;color:var(--plat)}
+.vr-btns{display:flex;flex-direction:column;gap:.55rem;margin-bottom:.8rem}
+.vr-add{font-family:"Rajdhani",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.82rem;border:1px solid var(--gold);color:var(--gold);background:none;cursor:none;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:all .3s}
+.vr-add:hover{background:rgba(201,168,76,.1)}
+.vr-buy{font-family:"Rajdhani",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.82rem;background:var(--g1);color:var(--void);border:none;cursor:none;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:opacity .3s}
+.vr-buy:hover{opacity:.85}
+.vr-emi{font-family:"Rajdhani",sans-serif;font-size:.58rem;color:var(--plat3);letter-spacing:.09em;text-align:center}
+.vr-emi b{color:var(--gold4)}
+
+/* BRIDAL */
+#bridal{padding:0 5rem 7rem}
+.brl-in{max-width:1440px;margin:0 auto}
+.brl-hero{display:grid;grid-template-columns:1fr 1.8fr 1fr;min-height:480px;border:1px solid rgba(201,168,76,.12);background:linear-gradient(135deg,rgba(15,8,2,.98),rgba(5,3,1,.99));overflow:hidden;position:relative}
+.brl-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 55%,rgba(201,168,76,.08),transparent 60%)}
+.brl-left{padding:3.2rem;display:flex;flex-direction:column;justify-content:center;z-index:1}
+.brl-tag{font-family:"Rajdhani",sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:var(--gold3);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+.brl-tag::before{content:"";width:18px;height:1px;background:var(--gold3)}
+.brl-title{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:700;line-height:1.08;color:var(--plat);margin-bottom:.9rem}
+.brl-title .ig{font-style:italic;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brl-p{font-size:.92rem;font-style:italic;color:rgba(245,237,214,.42);line-height:1.85;margin-bottom:1.6rem}
+.brl-center{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:480px}
+.brl-scene{display:flex;flex-direction:column;align-items:center;gap:10px;animation:nkbob 6s ease-in-out infinite}
+.brl-crown{width:195px;height:125px;background:conic-gradient(from 0deg,#C9A84C,#FFD700,#C9A84C,#8B6914,#C9A84C,#FFD700,#C9A84C);clip-path:polygon(0 100%,8% 55%,18% 85%,26% 35%,36% 68%,44% 20%,50% 0,56% 20%,64% 68%,74% 35%,82% 85%,92% 55%,100% 100%);box-shadow:0 0 55px rgba(201,168,76,.85),0 0 110px rgba(201,168,76,.3)}
+.brl-neck{width:230px;height:115px;border:6px solid var(--gold);border-bottom:none;border-radius:115px 115px 0 0;box-shadow:0 0 30px rgba(201,168,76,.65),inset 0 0 20px rgba(201,168,76,.1);position:relative}
+.brl-neck::after{content:"◆";position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:1.5rem;color:var(--gold);text-shadow:0 0 22px rgba(201,168,76,.9)}
+.brl-right{padding:1.8rem;display:flex;flex-direction:column;gap:.9rem;z-index:1;border-left:1px solid rgba(201,168,76,.1)}
+.bsvc{padding:1.3rem;border:1px solid rgba(201,168,76,.1);background:rgba(5,3,2,.6);transition:all .35s}
+.bsvc:hover{border-color:rgba(201,168,76,.35);background:rgba(30,18,2,.3)}
+.bsvc-ico{font-size:1.4rem;margin-bottom:.45rem}
+.bsvc-t{font-family:"Cinzel",serif;font-size:.75rem;font-weight:600;color:var(--plat);margin-bottom:.22rem}
+.bsvc-d{font-size:.78rem;font-style:italic;color:var(--plat3);line-height:1.48}
+
+/* PRODUCTS */
+#products{padding:7rem 5rem}
+.prod-in{max-width:1440px;margin:0 auto}
+.prod-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.2rem}
+.ftabs{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:2.8rem}
+.ftab{font-family:"Rajdhani",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.4rem 1.2rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3);background:none;cursor:none;transition:all .3s;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.ftab:hover,.ftab.act{background:var(--g1);color:var(--void);border-color:transparent}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+/* product card */
+.pc{position:relative;background:rgba(10,6,2,.82);border:1px solid rgba(201,168,76,.09);overflow:hidden;cursor:none;transition:all .42s;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.pc:hover{transform:translateY(-8px);border-color:rgba(201,168,76,.42);box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 60px rgba(201,168,76,.08)}
+.pc.feat{grid-column:span 2;grid-row:span 2}
+.pc-img{aspect-ratio:1;background:linear-gradient(145deg,rgba(28,16,2,.98),rgba(8,5,1,.99));background-size:cover;background-position:center;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pc.feat .pc-img{aspect-ratio:auto;height:72%}
+.pc-img.has-photo .pc-glow{background:linear-gradient(180deg,rgba(5,3,1,.1) 0%,rgba(5,3,1,.5) 65%,rgba(5,3,1,.88) 100%)}
+.pc-glow{position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 40%,rgba(201,168,76,.18),transparent 65%);transition:opacity .42s}
+.pc:hover .pc-glow{opacity:1.8}
+.pj{animation:pjf 4.5s ease-in-out infinite;transition:transform .42s}
+.pc:hover .pj{transform:scale(1.12) rotateY(18deg)}
+@keyframes pjf{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.pc-wish{position:absolute;top:.7rem;right:.7rem;width:28px;height:28px;border:1px solid rgba(201,168,76,.2);background:rgba(5,3,2,.7);color:var(--plat3);cursor:none;font-size:.78rem;display:flex;align-items:center;justify-content:center;transition:all .3s;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+.pc-wish:hover,.pc-wish.on{background:rgba(201,168,76,.1);color:var(--gold4);border-color:rgba(201,168,76,.4)}
+.pc-badge{position:absolute;top:.7rem;left:.7rem;font-family:"Rajdhani",sans-serif;font-size:.53rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .62rem;z-index:2;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+.pb-g{background:var(--gold);color:var(--void)}.pb-h{background:rgba(139,0,0,.9);color:#fff}.pb-d{background:linear-gradient(135deg,rgba(150,200,255,.14),rgba(100,170,240,.08));border:1px solid rgba(150,210,255,.3);color:rgba(180,225,255,.95)}.pb-e{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.38);color:var(--gold)}
+.pc-info{padding:1.2rem}
+.pc-tag{font-family:"Rajdhani",sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);margin-bottom:.25rem}
+.pc-name{font-family:"Playfair Display",serif;font-size:.9rem;font-weight:600;color:var(--plat);margin-bottom:.32rem}
+.pc-price{font-family:"Cinzel",serif;font-size:.9rem;font-weight:700;color:var(--gold4);margin-bottom:.7rem}
+.pc-foot{display:flex;justify-content:space-between;align-items:center}
+.pc-btn{font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.38rem 1.05rem;border:1px solid rgba(201,168,76,.28);color:var(--gold);background:none;cursor:none;transition:all .3s;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.pc-btn:hover{background:var(--g1);color:var(--void);border-color:transparent}
+.pc.hidden{display:none}
+
+/* jewel shapes */
+.jr{width:88px;height:88px;border-radius:50%;background:conic-gradient(from 0deg,#5C4210,#C9A84C,#FFD700,#C9A84C,#8B6914,#FFD700,#C9A84C,#5C4210);display:flex;align-items:center;justify-content:center;box-shadow:0 0 35px rgba(201,168,76,.6),inset 0 0 25px rgba(0,0,0,.55)}
+.jr-i{width:58%;height:58%;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.32),rgba(120,88,20,.72));box-shadow:inset 0 0 16px rgba(0,0,0,.5)}
+.jnm{display:flex;flex-direction:column;align-items:center;gap:5px}
+.jnm-a{width:90px;height:45px;border:4px solid var(--gold);border-bottom:none;border-radius:45px 45px 0 0;box-shadow:0 0 18px rgba(201,168,76,.5)}
+.jnm-p{width:22px;height:28px;background:conic-gradient(from 0deg,#8B6914,#C9A84C,#FFD700,#C9A84C,#8B6914);clip-path:polygon(25% 0,75% 0,100% 28%,75% 85%,50% 100%,25% 85%,0 28%);box-shadow:0 0 18px rgba(201,168,76,.7)}
+.jch{display:flex;flex-direction:column;align-items:center;gap:1px}
+.jchl{width:22px;height:10px;border-radius:50%;border:3px solid var(--gold);box-shadow:0 0 5px rgba(201,168,76,.4)}
+.jchl:nth-child(even){transform:rotate(90deg);border-color:var(--gold4)}
+.jear{display:flex;gap:10px}
+.jear-s{width:22px;height:44px;background:linear-gradient(to bottom,#C9A84C,#FFD700,#C9A84C,#8B6914);clip-path:polygon(50% 0,100% 25%,85% 75%,50% 100%,15% 75%,0 25%);box-shadow:0 0 15px rgba(201,168,76,.6)}
+.jbng{width:80px;height:80px;background:conic-gradient(from 30deg,#C9A84C,#FFD700,#C9A84C,#7A5C14,#C9A84C,#FFD700,#C9A84C);border-radius:4px;transform:rotate(12deg);box-shadow:0 0 25px rgba(201,168,76,.5),inset 0 0 18px rgba(0,0,0,.4)}
+.jd{display:flex;flex-wrap:wrap;gap:4px;max-width:90px;justify-content:center}
+.jds{width:13px;height:13px;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.95),rgba(180,220,255,.8) 40%,rgba(100,160,230,.5));clip-path:polygon(50% 0,100% 38%,80% 100%,20% 100%,0 38%);box-shadow:0 0 10px rgba(150,200,255,.8)}
+.jmng{display:flex;flex-direction:column;align-items:center;gap:4px}
+.jmb{width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.2),#111);box-shadow:0 0 3px rgba(0,0,0,.8)}
+.jmp{width:36px;height:46px;background:conic-gradient(from 0deg,#8B6914,#C9A84C,#FFD700,#C9A84C,#8B6914);clip-path:polygon(20% 0,80% 0,100% 40%,60% 100%,40% 100%,0 40%);box-shadow:0 0 20px rgba(201,168,76,.6)}
+.jrope{display:flex;flex-wrap:wrap;gap:0;max-width:110px;justify-content:center}
+.jrl{width:22px;height:10px;border-radius:50%;border:3px solid transparent;background:linear-gradient(rgba(10,6,2,1),rgba(10,6,2,1)) padding-box,conic-gradient(from 0deg,#C9A84C,#FFD700,#C9A84C,#8B6914,#C9A84C) border-box;box-shadow:0 0 5px rgba(201,168,76,.3);margin:-1.5px 0}
+.jrl:nth-child(even){transform:rotate(90deg);margin:-2.5px 0}
+.jwd{display:flex;gap:8px}
+.jwd-b{width:52px;height:52px;border-radius:50%;background:conic-gradient(from 0deg,#8B6914,#C9A84C,#FFD700,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;box-shadow:0 0 22px rgba(201,168,76,.55)}
+.jwd-i{width:55%;height:55%;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.3),rgba(100,75,15,.8))}
+.jkds{display:flex;gap:5px;flex-wrap:wrap;max-width:85px}
+.jk{width:24px;height:24px;border-radius:50%;background:conic-gradient(from 0deg,#C9A84C,#FFD700,#C9A84C,#8B6914);box-shadow:0 0 10px rgba(201,168,76,.5)}
+.jmen{display:flex;flex-direction:column;align-items:center;gap:4px}
+.jml{width:18px;height:9px;border:2.5px solid var(--gold);border-radius:2px;box-shadow:0 0 4px rgba(201,168,76,.3)}
+.jml:nth-child(even){border-color:var(--gold4)}
+.jbrl{display:flex;flex-direction:column;align-items:center;gap:6px}
+.jcr{width:68px;height:44px;background:conic-gradient(from 0deg,#C9A84C,#FFD700,#C9A84C,#8B6914,#C9A84C);clip-path:polygon(0 100%,8% 55%,18% 85%,28% 35%,38% 70%,50% 0,62% 70%,72% 35%,82% 85%,92% 55%,100% 100%);box-shadow:0 0 25px rgba(201,168,76,.7)}
+.jknd{display:flex;flex-direction:column;align-items:center;gap:4px}
+.jkr{display:flex;gap:4px;align-items:center}
+.jks{width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,200,100,.9),rgba(200,140,40,.8),rgba(139,105,20,.9));border:2px solid rgba(240,208,128,.5);box-shadow:0 0 8px rgba(201,168,76,.6)}
+.jkc{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 0deg,#8B6914,#C9A84C,#FFD700,#C9A84C,#8B6914);border:2.5px solid rgba(240,208,128,.4);box-shadow:0 0 16px rgba(201,168,76,.7);display:flex;align-items:center;justify-content:center}
+.jkc::after{content:"◆";font-size:.38rem;color:rgba(30,18,0,.8)}
+
+/* LIVE RATE */
+#liverates{padding:0 5rem 7rem}
+.lr-in{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.lr-left{background:rgba(8,5,2,.88);border:1px solid rgba(201,168,76,.12);padding:2.3rem;clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%)}
+.livebdg{display:inline-flex;align-items:center;gap:.5rem;font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.26rem .82rem;background:rgba(76,175,80,.08);border:1px solid rgba(76,175,80,.25);color:#4CAF50;margin-bottom:1rem}
+.ri-items{display:flex;flex-direction:column;gap:.9rem;margin-top:1.3rem}
+.ri{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;border:1px solid rgba(201,168,76,.1);background:rgba(15,9,2,.6);transition:all .35s}
+.ri:hover{border-color:rgba(201,168,76,.3);background:rgba(30,18,2,.3)}
+.ri-l{display:flex;flex-direction:column}
+.ri-k{font-family:"Rajdhani",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+.ri-p{font-family:"Cinzel",serif;font-size:1.55rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin:.18rem 0}
+.ri-u{font-family:"Rajdhani",sans-serif;font-size:.54rem;color:var(--plat3);letter-spacing:.1em}
+.ri-r{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem}
+.ri-c{font-family:"Rajdhani",sans-serif;font-size:.66rem;font-weight:700;display:inline-flex;align-items:center;gap:.25rem;padding:.14rem .5rem;border-radius:2px}
+.ri-up{background:rgba(76,175,80,.1);color:#4CAF50}.ri-dn{background:rgba(244,67,54,.1);color:#f44336}
+.ri-ch{width:78px;height:28px}
+.lr-right{background:rgba(8,5,2,.88);border:1px solid rgba(201,168,76,.12);padding:2.3rem}
+.chart-area{height:190px;position:relative;margin-bottom:1.3rem;overflow:hidden;border:1px solid rgba(201,168,76,.08);background:rgba(5,3,2,.6)}
+.chart-labels{display:flex;justify-content:space-between;font-family:"Rajdhani",sans-serif;font-size:.54rem;letter-spacing:.1em;color:var(--plat3);margin-bottom:.8rem}
+.chart-view-btn{width:100%;font-family:"Rajdhani",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.78rem;border:1px solid rgba(201,168,76,.25);color:var(--gold4);background:none;cursor:none;transition:all .3s;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.chart-view-btn:hover{background:rgba(201,168,76,.08);border-color:var(--gold)}
+
+/* AI ASSISTANT */
+#aiass{padding:7rem 5rem;background:linear-gradient(135deg,rgba(20,12,2,.55),rgba(5,3,2,.95));border-top:1px solid rgba(201,168,76,.1)}
+.ai-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.ai-feat{display:flex;gap:1.1rem;align-items:flex-start;padding:.75rem 1.1rem;border-left:1px solid rgba(201,168,76,.12);transition:border-color .3s,background .3s}
+.ai-feat:hover{border-left-color:var(--gold);background:rgba(201,168,76,.03)}
+.af-ico{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+.af-t{font-family:"Rajdhani",sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--plat);margin-bottom:.22rem}
+.af-d{font-size:.86rem;font-style:italic;color:rgba(245,237,214,.4);line-height:1.48}
+.ai-widget{background:rgba(8,5,2,.9);border:1px solid rgba(201,168,76,.15);clip-path:polygon(0 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%);overflow:hidden}
+.aw-head{padding:1.1rem 1.4rem;background:linear-gradient(135deg,rgba(30,18,2,.9),rgba(15,9,1,.9));border-bottom:1px solid rgba(201,168,76,.12);display:flex;align-items:center;gap:.85rem}
+.aw-av{width:36px;height:36px;border-radius:50%;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.aw-name{font-family:"Cinzel",serif;font-size:.78rem;font-weight:600;color:var(--plat)}
+.aw-st{font-family:"Rajdhani",sans-serif;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:#4CAF50;display:flex;align-items:center;gap:.4rem}
+.aw-dot{width:5px;height:5px;border-radius:50%;background:#4CAF50;animation:lpa 1.2s infinite}
+.aw-msgs{padding:1.3rem;display:flex;flex-direction:column;gap:.8rem;min-height:190px}
+.awm{max-width:82%;padding:.72rem 1rem;font-family:"Cormorant Garamond",serif;font-size:.9rem;font-style:italic;line-height:1.6}
+.awm.bot{background:rgba(30,18,2,.8);border:1px solid rgba(201,168,76,.12);color:rgba(245,237,214,.78);align-self:flex-start;clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%)}
+.awm.usr{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:var(--gold4);align-self:flex-end;clip-path:polygon(0 0,100% 0,100% 100%,7px 100%,0 calc(100% - 7px))}
+.aw-sugs{padding:.7rem 1.3rem;border-top:1px solid rgba(201,168,76,.08);display:flex;gap:.45rem;flex-wrap:wrap}
+.aw-sug{font-family:"Rajdhani",sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.1em;padding:.22rem .68rem;border:1px solid rgba(201,168,76,.15);color:var(--plat3);cursor:none;background:none;transition:all .3s}
+.aw-sug:hover{background:rgba(201,168,76,.08);color:var(--gold4);border-color:rgba(201,168,76,.35)}
+.aw-inp{display:flex;border-top:1px solid rgba(201,168,76,.1)}
+.aw-field{flex:1;padding:.85rem 1.1rem;background:transparent;border:none;outline:none;font-family:"Cormorant Garamond",serif;font-size:.9rem;color:var(--plat)}
+.aw-field::placeholder{color:var(--plat3)}
+.aw-send{padding:.75rem 1.4rem;background:var(--g1);color:var(--void);border:none;cursor:none;font-family:"Rajdhani",sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;transition:opacity .3s}
+.aw-send:hover{opacity:.85}
+
+/* CUSTOM DESIGNER */
+#designer{padding:7rem 5rem;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(30,18,2,.45),transparent),var(--void2);border-top:1px solid rgba(201,168,76,.1)}
+.des-in{max-width:1200px;margin:0 auto}
+.des-hd{text-align:center;margin-bottom:3.5rem}
+.des-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.dpanel{background:rgba(8,5,2,.82);border:1px solid rgba(201,168,76,.12);padding:2.2rem;clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)}
+.dp-t{font-family:"Cinzel",serif;font-size:.9rem;font-weight:700;color:var(--plat);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.dp-t::before{content:"";width:16px;height:1px;background:var(--g1)}
+.dfield{margin-bottom:1.2rem}
+.dfl{font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--plat3);display:block;margin-bottom:.42rem}
+.dfinp{width:100%;padding:.72rem .95rem;background:rgba(20,12,2,.6);border:1px solid rgba(201,168,76,.18);color:var(--plat);font-family:"Cormorant Garamond",serif;font-size:.92rem;outline:none;transition:border-color .3s}
+.dfinp:focus{border-color:rgba(201,168,76,.5)}
+option{background:var(--void2)}
+.dfrow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.dfopts{display:flex;gap:.45rem;flex-wrap:wrap}
+.dfopt{font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;padding:.38rem .95rem;border:1px solid rgba(201,168,76,.2);color:var(--plat3);background:none;cursor:none;transition:all .3s}
+.dfopt.sel,.dfopt:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.5);color:var(--gold4)}
+.dupzone{border:1px dashed rgba(201,168,76,.2);padding:2.2rem;text-align:center;cursor:none;transition:all .3s;margin-bottom:.8rem}
+.dupzone:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.03)}
+.duz-i{font-size:2.2rem;margin-bottom:.7rem;opacity:.5}
+.duz-t{font-family:"Rajdhani",sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+.pest{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.12);padding:1.3rem;margin-top:.8rem}
+.pe-row{display:flex;justify-content:space-between;margin-bottom:.4rem}
+.pe-l{font-family:"Rajdhani",sans-serif;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--plat3)}
+.pe-v{font-family:"Cinzel",serif;font-size:.82rem;color:var(--gold4)}
+.pe-total{display:flex;justify-content:space-between;border-top:1px solid rgba(201,168,76,.14);padding-top:.7rem;margin-top:.4rem}
+.pe-tl{font-family:"Cinzel",serif;font-size:.82rem;color:var(--plat)}
+.pe-tv{font-family:"Cinzel",serif;font-size:1.05rem;font-weight:700;color:var(--gold4)}
+.dprev{background:rgba(10,6,2,.9);border:1px solid rgba(201,168,76,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;position:relative;overflow:hidden}
+.dprev-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,168,76,.12),transparent 65%)}
+.dprev-vis{position:relative;z-index:1;animation:pjf 5s ease-in-out infinite}
+.dprev-hint{position:absolute;bottom:.9rem;left:0;right:0;text-align:center;font-family:"Rajdhani",sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+
+/* TRUST */
+#trust{padding:6rem 5rem;background:linear-gradient(90deg,rgba(201,168,76,.04),rgba(201,168,76,.07),rgba(201,168,76,.04));border-top:1px solid rgba(201,168,76,.09);border-bottom:1px solid rgba(201,168,76,.09)}
+.tr-in{max-width:1340px;margin:0 auto}
+.tr-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4rem}
+.tri{text-align:center;padding:1.8rem 1.1rem;border:1px solid rgba(201,168,76,.08);background:rgba(8,5,2,.5);transition:all .35s;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.tri:hover{border-color:rgba(201,168,76,.3);background:rgba(30,18,2,.3);transform:translateY(-4px)}
+.tri-ico{font-size:1.7rem;margin-bottom:.7rem}
+.tri-t{font-family:"Cinzel",serif;font-size:.78rem;font-weight:700;color:var(--plat);margin-bottom:.35rem}
+.tri-d{font-size:.8rem;font-style:italic;color:rgba(245,237,214,.36);line-height:1.5}
+
+/* EMI */
+#emi{padding:6rem 5rem;background:linear-gradient(135deg,rgba(201,168,76,.055),rgba(30,18,2,.42),rgba(201,168,76,.055));border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.emi-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start}
+.emi-body{font-size:.98rem;font-weight:300;font-style:italic;color:rgba(245,237,214,.45);line-height:1.88;margin-bottom:1.8rem}
+.paymths{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-bottom:1.8rem}
+.pym{padding:.82rem 1rem;border:1px solid rgba(201,168,76,.12);display:flex;align-items:center;gap:.65rem;font-family:"Rajdhani",sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--plat3);transition:all .3s}
+.pym:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.04);color:var(--gold4)}
+.pym-ico{font-size:1.05rem}
+.ecalc{background:rgba(8,5,2,.85);border:1px solid rgba(201,168,76,.14);padding:2rem;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.ec-t{font-family:"Cinzel",serif;font-size:.88rem;font-weight:700;color:var(--plat);margin-bottom:1.3rem;display:flex;align-items:center;gap:.55rem}
+.ec-t::before{content:"";width:14px;height:1px;background:var(--g1)}
+.ec-row{display:grid;grid-template-columns:1fr 1fr;gap:.72rem;margin-bottom:.82rem}
+.ec-field label{font-family:"Rajdhani",sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3);display:block;margin-bottom:.38rem}
+.ec-field input,.ec-field select{width:100%;padding:.62rem .88rem;background:rgba(20,12,2,.6);border:1px solid rgba(201,168,76,.18);color:var(--plat);font-family:"Cormorant Garamond",serif;font-size:.92rem;outline:none;transition:border-color .3s}
+.ec-field input:focus,.ec-field select:focus{border-color:rgba(201,168,76,.5)}
+.ec-btn{width:100%;padding:.82rem;background:var(--g1);color:var(--void);border:none;cursor:none;font-family:"Rajdhani",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);transition:opacity .3s;margin-top:.4rem}
+.ec-btn:hover{opacity:.85}
+.ec-res{margin-top:1.1rem;padding:1.1rem;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.14);display:none}
+.ec-res.show{display:block}
+.er-l{font-family:"Rajdhani",sans-serif;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--plat3)}
+.er-v{font-family:"Cinzel",serif;font-size:1.35rem;font-weight:700;color:var(--gold4)}
+.er-n{font-family:"Rajdhani",sans-serif;font-size:.58rem;color:var(--plat3);letter-spacing:.1em;margin-top:.28rem}
+
+/* TESTIMONIALS */
+#tst{padding:7rem 5rem;background:linear-gradient(180deg,rgba(30,18,2,.18),transparent)}
+.tst-in{max-width:1300px;margin:0 auto}
+.tst-head{text-align:center;margin-bottom:4rem}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.7rem}
+.tc{padding:2.1rem;background:rgba(12,7,2,.6);border:1px solid rgba(201,168,76,.1);position:relative;transition:border-color .35s}
+.tc:hover{border-color:rgba(201,168,76,.3)}
+.tc-stars{position:absolute;top:1.7rem;right:1.7rem;color:var(--gold4);font-size:.7rem;letter-spacing:.05em}
+.tc-q{font-size:3rem;line-height:.5;color:var(--gold);font-family:"Playfair Display",serif;opacity:.28;margin-bottom:.75rem;display:block}
+.tc-txt{font-size:.92rem;font-weight:300;font-style:italic;color:rgba(245,237,214,.62);line-height:1.88;margin-bottom:1.7rem}
+.tc-auth{display:flex;align-items:center;gap:.85rem}
+.tc-av{width:42px;height:42px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-family:"Cinzel",serif;font-size:.88rem;font-weight:700;color:var(--void);flex-shrink:0}
+.tc-name{font-family:"Cinzel",serif;font-size:.78rem;font-weight:600;color:var(--plat)}
+.tc-loc{font-family:"Rajdhani",sans-serif;font-size:.58rem;letter-spacing:.12em;color:var(--plat3)}
+
+/* STATS */
+#stats{padding:5rem;background:linear-gradient(135deg,rgba(30,18,2,.5),rgba(5,3,2,.9));border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1)}
+.stats-in{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2rem}
+.si{text-align:center;padding:1.4rem}
+.si-ico{font-size:1.7rem;margin-bottom:.65rem;filter:drop-shadow(0 0 10px rgba(201,168,76,.5))}
+.si-v{font-family:"Cinzel",serif;font-size:1.9rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:.22rem}
+.si-l{font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+
+/* LOYALTY */
+#loyalty{padding:0 5rem 7rem}
+.loy-in{max-width:1440px;margin:0 auto}
+.loy-box{padding:3rem;background:linear-gradient(135deg,rgba(30,18,2,.7),rgba(201,168,76,.06),rgba(30,18,2,.7));border:1px solid rgba(201,168,76,.15);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.loy-t{font-family:"Playfair Display",serif;font-size:1.7rem;font-weight:700;color:var(--plat);margin-bottom:.55rem}
+.loy-p{font-size:.97rem;font-style:italic;color:rgba(245,237,214,.42);margin-bottom:1.4rem;line-height:1.7}
+.tiers{display:flex;gap:1.2rem;flex-wrap:wrap}
+.tier{text-align:center;padding:.75rem 1.1rem;border:1px solid rgba(201,168,76,.15);flex:1;min-width:80px}
+.tier-n{font-family:"Cinzel",serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.22rem}
+.tier-p{font-family:"Rajdhani",sans-serif;font-size:.56rem;color:var(--plat3)}
+.t-sil .tier-n{color:#aaa}.t-gld .tier-n{color:var(--gold4)}.t-plt .tier-n{color:rgba(200,230,255,.9)}.t-roy .tier-n{color:#FFD700;text-shadow:0 0 10px rgba(255,215,0,.6)}
+.tier-perks{margin-top:1.2rem;font-family:"Rajdhani",sans-serif;font-size:.6rem;letter-spacing:.13em;color:var(--plat3);line-height:1.8}
+
+/* STORE LOCATOR */
+#stores{padding:7rem 5rem;background:linear-gradient(135deg,rgba(30,18,2,.3),rgba(5,3,2,.8))}
+.st-in{max-width:1300px;margin:0 auto}
+.st-head{text-align:center;margin-bottom:3.5rem}
+.st-grid{display:grid;grid-template-columns:1fr 2fr;gap:2rem}
+.st-list{display:flex;flex-direction:column;gap:.9rem}
+.sl{padding:1.3rem;border:1px solid rgba(201,168,76,.1);background:rgba(8,5,2,.6);cursor:none;transition:all .35s}
+.sl:hover,.sl.act{border-color:rgba(201,168,76,.38);background:rgba(30,18,2,.3)}
+.sl-city{font-family:"Cinzel",serif;font-size:.85rem;font-weight:700;color:var(--plat);margin-bottom:.22rem}
+.sl-addr{font-family:"Rajdhani",sans-serif;font-size:.58rem;letter-spacing:.1em;color:var(--plat3);margin-bottom:.45rem}
+.sl-meta{display:flex;gap:.8rem;flex-wrap:wrap}
+.sl-bdg{font-family:"Rajdhani",sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:.16rem .52rem;border:1px solid rgba(201,168,76,.2);color:var(--gold3)}
+.st-map{background:rgba(8,5,2,.7);border:1px solid rgba(201,168,76,.12);min-height:380px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.028) 1px,transparent 1px);background-size:38px 38px}
+.map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:none}
+.map-dot{width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(201,168,76,.9),0 0 28px rgba(201,168,76,.35);animation:mpulse 2s ease-in-out infinite}
+@keyframes mpulse{0%,100%{transform:scale(1);box-shadow:0 0 14px rgba(201,168,76,.9)}50%{transform:scale(1.3);box-shadow:0 0 24px rgba(201,168,76,1),0 0 50px rgba(201,168,76,.45)}}
+.map-dot.sm{background:rgba(201,168,76,.4);box-shadow:none;width:8px;height:8px;animation:none}
+.map-lbl{font-family:"Rajdhani",sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.13em;color:var(--gold4);white-space:nowrap}
+.map-hint{position:relative;z-index:1;text-align:center}
+.map-hint-title{font-family:"Cinzel",serif;font-size:.85rem;font-weight:700;color:var(--plat);margin-bottom:.3rem}
+.map-hint-sub{font-family:"Rajdhani",sans-serif;font-size:.6rem;letter-spacing:.15em;color:var(--plat3)}
+
+/* CTA */
+#cta{padding:9rem 5rem;text-align:center;background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(201,168,76,.12),transparent),linear-gradient(135deg,rgba(30,18,2,.9),var(--void));border-top:1px solid rgba(201,168,76,.14)}
+.cta-pre{font-family:"Rajdhani",sans-serif;font-size:.66rem;letter-spacing:.48em;text-transform:uppercase;color:var(--gold3);margin-bottom:1.4rem;display:block}
+.cta-h{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,4.8vw,5rem);font-weight:900;line-height:1.05;margin-bottom:1.3rem}
+.cta-h .ig{font-style:italic;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-p{font-size:1.05rem;font-style:italic;color:rgba(245,237,214,.42);margin-bottom:3.2rem}
+.cta-btns{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+.cta-nums{display:flex;gap:4rem;justify-content:center;flex-wrap:wrap}
+.cn-i{text-align:center}
+.cn-v{font-family:"Cinzel",serif;font-size:2.1rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:.28rem}
+.cn-l{font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--plat3)}
+
+/* FOOTER */
+footer{padding:5rem 5rem 2.5rem;border-top:1px solid rgba(201,168,76,.09);background:rgba(3,2,1,.97)}
+.ft-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1.5fr;gap:3.5rem;margin-bottom:3.5rem}
+.ft-about{font-size:.84rem;font-style:italic;color:rgba(245,237,214,.3);line-height:1.85;max-width:250px;margin-bottom:1.4rem}
+.ft-soc{display:flex;gap:.55rem}
+.fts{width:32px;height:32px;border:1px solid rgba(201,168,76,.16);display:flex;align-items:center;justify-content:center;color:var(--plat3);font-family:"Rajdhani",sans-serif;font-size:.58rem;font-weight:700;cursor:none;transition:all .3s;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)}
+.fts:hover{background:var(--g1);color:var(--void);border-color:transparent}
+.ft-col h4{font-family:"Cinzel",serif;font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold3);margin-bottom:1.2rem}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:.52rem}
+.ft-links a{font-size:.82rem;font-style:italic;color:rgba(245,237,214,.3);text-decoration:none;transition:color .3s;cursor:none}
+.ft-links a:hover{color:var(--gold4)}
+.ft-nl-t{font-family:"Cinzel",serif;font-size:.75rem;font-weight:700;color:var(--plat);margin-bottom:.35rem}
+.ft-nl-s{font-size:.8rem;font-style:italic;color:var(--plat3);margin-bottom:.85rem;line-height:1.5}
+.ft-nl-f{display:flex}
+.ft-nl-i{flex:1;padding:.62rem .88rem;background:rgba(20,12,2,.7);border:1px solid rgba(201,168,76,.18);color:var(--plat);font-family:"Cormorant Garamond",serif;font-size:.88rem;outline:none;border-right:none}
+.ft-nl-i:focus{border-color:rgba(201,168,76,.4)}
+.ft-nl-b{padding:.62rem 1.1rem;background:var(--g1);color:var(--void);border:none;cursor:none;font-family:"Rajdhani",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;transition:opacity .3s}
+.ft-nl-b:hover{opacity:.85}
+.ft-pay-row{margin-top:1.1rem;display:flex;gap:.45rem;flex-wrap:wrap}
+.ftpay{font-family:"Rajdhani",sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.1em;padding:.22rem .55rem;border:1px solid rgba(201,168,76,.14);color:var(--plat3)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:1.8rem;border-top:1px solid rgba(201,168,76,.06);flex-wrap:wrap;gap:.8rem}
+.ft-copy{font-family:"Rajdhani",sans-serif;font-size:.58rem;letter-spacing:.1em;color:var(--plat3)}
+.ft-certs{display:flex;gap:1.4rem}
+.ftc{font-family:"Rajdhani",sans-serif;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold3);display:flex;align-items:center;gap:.28rem}
+.ftc::before{content:"✓";color:var(--gold4)}
+
+/* CART */
+#cside{position:fixed;top:0;right:-460px;width:450px;height:100vh;z-index:2000;background:rgba(5,3,2,.99);border-left:1px solid rgba(201,168,76,.14);backdrop-filter:blur(20px);transition:right .45s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column}
+#cside.open{right:0}
+.csh{padding:1.7rem 1.9rem;border-bottom:1px solid rgba(201,168,76,.1);display:flex;justify-content:space-between;align-items:center}
+.csh-t{font-family:"Cinzel",serif;font-size:.92rem;font-weight:700;color:var(--plat);letter-spacing:.1em}
+.csh-x{width:30px;height:30px;border:1px solid rgba(201,168,76,.18);background:none;color:var(--plat3);cursor:none;font-size:.88rem;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px);transition:all .3s}
+.csh-x:hover{background:rgba(201,168,76,.08);color:var(--gold4)}
+.cbody{flex:1;overflow-y:auto;padding:1.3rem 1.9rem}
+.cbody::-webkit-scrollbar{width:2px}.cbody::-webkit-scrollbar-thumb{background:var(--gold3)}
+.cempty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;gap:.75rem;color:var(--plat3)}
+.ce-i{font-size:2.4rem;opacity:.2}
+.ce-p{font-family:"Rajdhani",sans-serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+.citem{display:flex;gap:.85rem;padding:.88rem 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.ci-img{width:50px;height:50px;background:rgba(30,18,2,.8);border:1px solid rgba(201,168,76,.14);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.35rem}
+.ci-n{font-family:"Cinzel",serif;font-size:.75rem;color:var(--plat);margin-bottom:.15rem}
+.ci-p{font-family:"Cinzel",serif;font-size:.75rem;color:var(--gold4)}
+.ci-rm{background:none;border:none;color:var(--plat3);cursor:none;font-size:.65rem;transition:color .3s;align-self:flex-start}
+.ci-rm:hover{color:#f44336}
+.cfoot{padding:1.4rem 1.9rem;border-top:1px solid rgba(201,168,76,.1)}
+.ctot{display:flex;justify-content:space-between;margin-bottom:1.2rem}
+.ct-l{font-family:"Rajdhani",sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--plat3)}
+.ct-v{font-family:"Cinzel",serif;font-size:1.1rem;font-weight:700;color:var(--gold4)}
+.cck{width:100%;padding:.92rem;background:var(--g1);color:var(--void);border:none;cursor:none;font-family:"Rajdhani",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:opacity .3s}
+.cck:hover{opacity:.85}
+#cov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1999;opacity:0;pointer-events:none;transition:opacity .4s}
+#cov.open{opacity:1;pointer-events:all}
+
+/* TOAST */
+.xtst{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(14px);background:rgba(25,14,2,.97);border:1px solid rgba(201,168,76,.35);padding:.7rem 1.8rem;z-index:5000;opacity:0;pointer-events:none;transition:all .35s;white-space:nowrap;font-family:"Rajdhani",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--gold4);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.xtst.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.rev.in{opacity:1;transform:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--void)}::-webkit-scrollbar-thumb{background:var(--gold3)}
+.forb{position:fixed;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.018),transparent 70%);pointer-events:none;z-index:0;transition:left 2.2s cubic-bezier(.23,1,.32,1),top 2.2s cubic-bezier(.23,1,.32,1)}
+
+/* ═══ ADMIN / OWNER PANEL ═══ */
+.admin-edit-btn{
+  position:absolute;top:.7rem;right:.7rem;z-index:5;
+  font-family:'Rajdhani',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:.32rem .8rem;background:var(--g1);color:var(--void);border:none;cursor:none;
+  clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px);
+  display:none;
+}
+body.admin-on .admin-edit-btn{display:block}
+body.admin-on .pc{outline:1px dashed rgba(201,168,76,.35);outline-offset:3px}
+#admin-trigger{
+  position:fixed;bottom:1.5rem;left:1.5rem;z-index:500;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(10,6,2,.85);border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;color:var(--plat3);
+  cursor:none;transition:all .3s;
+}
+#admin-trigger:hover{border-color:var(--gold);color:var(--gold4);background:rgba(30,18,2,.9)}
+#admin-trigger.active{border-color:var(--gold);color:var(--gold4);box-shadow:0 0 16px rgba(201,168,76,.4)}
+#admin-trigger .ic{width:1rem;height:1rem}
+#admin-pill{
+  position:fixed;top:38px;left:50%;transform:translateX(-50%) translateY(-60px);
+  z-index:950;background:rgba(20,12,2,.95);border:1px solid rgba(201,168,76,.35);
+  padding:.5rem 1.2rem;display:flex;align-items:center;gap:.8rem;
+  font-family:'Rajdhani',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold4);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  transition:transform .4s ease;
+}
+#admin-pill.show{transform:translateX(-50%) translateY(0)}
+#admin-pill button{font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;background:none;border:1px solid rgba(201,168,76,.3);color:var(--plat3);padding:.2rem .7rem;cursor:none;transition:all .3s}
+#admin-pill button:hover{color:var(--gold4);border-color:var(--gold)}
+.admin-modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:4000;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px)}
+.admin-modal-ov.show{display:flex}
+.admin-modal{
+  width:100%;max-width:380px;background:rgba(10,6,2,.98);border:1px solid rgba(201,168,76,.22);
+  padding:2.2rem;clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%);
+  position:relative;
+}
+.admin-modal.wide{max-width:480px}
+.am-close{position:absolute;top:1rem;right:1rem;width:28px;height:28px;border:1px solid rgba(201,168,76,.2);background:none;color:var(--plat3);cursor:none;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.am-close:hover{color:var(--gold4);border-color:var(--gold)}
+.am-title{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--plat);margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem}
+.am-title .ic{width:1.1rem;height:1.1rem;color:var(--gold4)}
+.am-sub{font-family:'Rajdhani',sans-serif;font-size:.66rem;letter-spacing:.1em;color:var(--plat3);margin-bottom:1.6rem}
+.am-field{margin-bottom:1.1rem}
+.am-field label{font-family:'Rajdhani',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--plat3);display:block;margin-bottom:.45rem}
+.am-field input{
+  width:100%;padding:.75rem 1rem;background:rgba(20,12,2,.6);
+  border:1px solid rgba(201,168,76,.18);color:var(--plat);
+  font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;letter-spacing:.15em;
+  transition:border-color .3s;
+}
+.am-field input:focus{border-color:var(--gold)}
+.am-err{font-family:'Rajdhani',sans-serif;font-size:.62rem;color:#f44336;letter-spacing:.08em;margin-top:.5rem;display:none}
+.am-err.show{display:block}
+.am-submit{
+  width:100%;padding:.85rem;background:var(--g1);color:var(--void);border:none;cursor:none;
+  font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  transition:opacity .3s;margin-top:.3rem;
+}
+.am-submit:hover{opacity:.85}
+.am-preview{
+  width:100%;aspect-ratio:1.4;background:rgba(20,12,2,.6);border:1px solid rgba(201,168,76,.18);
+  background-size:cover;background-position:center;margin-bottom:1rem;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.am-preview-hint{font-family:'Rajdhani',sans-serif;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--plat3);text-align:center;padding:1rem}
+.am-upload-row{display:flex;gap:.6rem;margin-bottom:1.1rem}
+.am-upload-btn{
+  flex:1;padding:.7rem;border:1px dashed rgba(201,168,76,.3);background:rgba(201,168,76,.04);
+  color:var(--gold4);cursor:none;font-family:'Rajdhani',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  text-align:center;transition:all .3s;
+}
+.am-upload-btn:hover{background:rgba(201,168,76,.09);border-color:var(--gold)}
+.am-actions{display:flex;gap:.6rem;margin-top:.4rem}
+.am-actions .am-submit{margin-top:0}
+.am-cancel-btn{
+  flex:1;padding:.85rem;background:none;border:1px solid rgba(201,168,76,.2);color:var(--plat3);cursor:none;
+  font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  transition:all .3s;
+}
+.am-cancel-btn:hover{border-color:rgba(201,168,76,.4);color:var(--plat)}
+.am-reset-link{
+  display:block;text-align:center;margin-top:1rem;font-family:'Rajdhani',sans-serif;font-size:.58rem;
+  letter-spacing:.12em;color:var(--plat3);cursor:none;text-decoration:underline;text-decoration-color:rgba(201,168,76,.3);
+}
+.am-reset-link:hover{color:var(--gold4)}
+
+@media(max-width:1080px){
+  nav{padding:.8rem 1.5rem;top:22px}.nlinks,.nbook{display:none}
+  .h-inner{grid-template-columns:1fr;text-align:center;padding:4rem 1.5rem 2rem;gap:2.5rem}
+  .heyebrow,.hctas,.htrust{justify-content:center}.hp{margin:0 auto 2.2rem}
+  .hright{order:1;height:320px}.hscene{width:280px;height:280px}
+  .hstats{position:static;flex-wrap:wrap}.hs{flex:0 0 50%}
+  .vwr-box,.lr-in,.ai-in,.des-grid,.emi-in,.loy-box,.st-grid,.ft-grid{grid-template-columns:1fr}
+  .vl{border-right:none;border-bottom:1px solid rgba(201,168,76,.1)}.vr{border-left:none;border-top:1px solid rgba(201,168,76,.1)}
+  .pgrid{grid-template-columns:1fr 1fr}.pc.feat{grid-column:auto;grid-row:auto}.pc.feat .pc-img{height:auto;aspect-ratio:1}
+  .tst-grid,.tr-grid,.stats-in{grid-template-columns:repeat(2,1fr)}
+  .brl-hero{grid-template-columns:1fr}.ts-in{gap:.7rem}
+  section{padding-left:1.5rem!important;padding-right:1.5rem!important}
+  #cside{width:100%;right:-100%}
+  body{cursor:auto}#cur,#cur-r{display:none}
+  .cta-nums{gap:2rem}.ft-grid{gap:2rem}
+  .paymths{grid-template-columns:1fr}
+}
+/* ICON SYSTEM — replaces all decorative emoji with consistent gold-toned SVGs */
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.12em;color:currentColor}
+.tri-ico .ic,.tsi-icon .ic,.bsvc-ico .ic,.srv-icon .ic{width:1.6rem;height:1.6rem;color:var(--gold4)}
+.si-ico .ic{width:1.7rem;height:1.7rem;color:var(--gold4)}
+.af-ico .ic{width:1.15rem;height:1.15rem;color:var(--gold4)}
+.vfeat-ico .ic,.duz-i .ic{width:1.05rem;height:1.05rem;color:var(--gold4)}
+.cpill-ico .ic{width:1.6rem;height:1.6rem;color:var(--gold4)}
+.spec-i .ic{width:.85rem;height:.85rem;color:var(--gold4)}
+.pym-ico .ic{width:1.05rem;height:1.05rem;color:var(--gold4)}
+.ftc .ic{width:.7rem;height:.7rem}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-crown">♛</div>
+  <div class="ld-title">ROYAL GOLD PALACE</div>
+  <div class="ld-sub">Where Legacy Meets Luxury · Est. 1952</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+  <div class="ld-txt">Crafting your luxury experience...</div>
+</div>
+<canvas id="bgc"></canvas>
+<div id="cur"></div><div id="cur-r"></div>
+<div class="forb" id="forb"></div>
+<div class="xtst" id="xtst"></div>
+<div id="cov" onclick="toggleCart()"></div>
+
+<!-- ═══ ADMIN / OWNER PANEL ═══ -->
+<button id="admin-trigger" onclick="openAdminLogin()" title="Owner Login">
+  <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="11" width="16" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+</button>
+<div id="admin-pill">
+  <span>Owner Mode Active</span>
+  <button onclick="adminLogout()">Exit</button>
+</div>
+
+<!-- Login Modal -->
+<div class="admin-modal-ov" id="admin-login-ov">
+  <div class="admin-modal">
+    <button class="am-close" onclick="closeAdminLogin()">✕</button>
+    <div class="am-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="11" width="16" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Owner Login</div>
+    <div class="am-sub">Enter your password to edit jewellery images and prices</div>
+    <div class="am-field">
+      <label>Password</label>
+      <input type="password" id="admin-pw-input" placeholder="••••••••" maxlength="20">
+    </div>
+    <div class="am-err" id="admin-pw-err">Incorrect password. Please try again.</div>
+    <button class="am-submit" onclick="checkAdminPw()">Unlock Owner Mode</button>
+  </div>
+</div>
+
+<!-- Edit Product Modal -->
+<div class="admin-modal-ov" id="admin-edit-ov">
+  <div class="admin-modal wide">
+    <button class="am-close" onclick="closeEdit()">✕</button>
+    <div class="am-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.5 12.5 21a4.5 4.5 0 0 1-6.4-6.4L15 5.7a3 3 0 0 1 4.3 4.2L10.4 19a1.5 1.5 0 0 1-2.1-2.1l8-8"/></svg>Edit Jewellery</div>
+    <div class="am-sub" id="edit-modal-sub">Update image and price for this piece</div>
+    <div class="am-preview" id="edit-preview"><span class="am-preview-hint">No image selected yet</span></div>
+    <div class="am-upload-row">
+      <label class="am-upload-btn">Upload Image<input type="file" accept="image/*" id="edit-file-input" style="display:none" onchange="handleEditFile(event)"></label>
+      <button class="am-upload-btn" onclick="clearEditImage()" style="border-style:solid">Remove Image</button>
+    </div>
+    <div class="am-field">
+      <label>Jewellery Name</label>
+      <input type="text" id="edit-name-input" placeholder="e.g. Maharani Heritage Necklace">
+    </div>
+    <div class="am-field">
+      <label>Price (₹)</label>
+      <input type="text" id="edit-price-input" placeholder="e.g. ₹ 2,85,000">
+    </div>
+    <div class="am-actions">
+      <button class="am-cancel-btn" onclick="closeEdit()">Cancel</button>
+      <button class="am-submit" onclick="saveEdit()">Save Changes</button>
+    </div>
+    <a class="am-reset-link" onclick="resetEdit()">Reset this item to default</a>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cside">
+  <div class="csh"><span class="csh-t">Your Selection ✦</span><button class="csh-x" onclick="toggleCart()">✕</button></div>
+  <div class="cbody" id="cbody"><div class="cempty"><span class="ce-i">◇</span><p class="ce-p">Cart awaits royalty</p></div></div>
+  <div class="cfoot"><div class="ctot"><span class="ct-l">Total</span><span class="ct-v" id="ctot">₹ 0</span></div><button class="cck" onclick="xt('Redirecting to secure checkout...')">Proceed to Checkout</button></div>
+</div>
+<!-- RATE TICKER -->
+<div id="rtick"><div class="rtk-track" id="rtkt">
+  <div class="rtk-item"><div class="lpulse"></div>LIVE</div>
+  <div class="rtk-item">24K Gold: <b id="rt24">₹6,284/g</b> <span class="tup">▲0.32%</span></div>
+  <div class="rtk-item">22K Gold: <b id="rt22">₹5,761/g</b> <span class="tup">▲0.28%</span></div>
+  <div class="rtk-item">18K Gold: <b id="rt18">₹4,713/g</b> <span class="tup">▲0.19%</span></div>
+  <div class="rtk-item">Silver: <b>₹74.5/g</b> <span class="tdn">▼1.1%</span></div>
+  <div class="rtk-item">◆ BIS Hallmarked ◆ GIA Diamonds ◆ Lifetime Exchange ◆ Free Insurance ◆ 70+ Years ◆</div>
+  <div class="rtk-item"><div class="lpulse"></div>LIVE</div>
+  <div class="rtk-item">24K Gold: <b>₹6,284/g</b> <span class="tup">▲0.32%</span></div>
+  <div class="rtk-item">22K Gold: <b>₹5,761/g</b> <span class="tup">▲0.28%</span></div>
+  <div class="rtk-item">18K Gold: <b>₹4,713/g</b> <span class="tup">▲0.19%</span></div>
+  <div class="rtk-item">Silver: <b>₹74.5/g</b> <span class="tdn">▼1.1%</span></div>
+  <div class="rtk-item">◆ BIS Hallmarked ◆ GIA Diamonds ◆ Lifetime Exchange ◆ Free Insurance ◆ 70+ Years ◆</div>
+</div></div>
+<!-- NAV -->
+<nav id="mnav">
+  <div class="nlogo" onclick="scrollTo({top:0,behavior:'smooth'})">
+    <div class="ncrown">♛</div>
+    <div class="nlogo-text"><span class="nlogo-main">ROYAL GOLD PALACE</span><span class="nlogo-sub">Est. 1952 · Pure Gold · Certified</span></div>
+  </div>
+  <ul class="nlinks">
+    <li><a href="#cats">Collection</a></li><li><a href="#bridal">Bridal</a></li>
+    <li><a href="#viewer">Diamond</a></li><li><a href="#liverates">Gold</a></li>
+    <li><a href="#tst">Reviews</a></li><li><a href="#stores">Stores</a></li><li><a href="#aiass">About</a></li>
+  </ul>
+  <div class="nright">
+    <div class="nico" onclick="xt('AI + Voice + Image Search Active...')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+    <div class="nico" onclick="xt('Wishlist — 0 items')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+    <div class="nico" onclick="toggleCart()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><div class="nbadge" id="cn">0</div></div>
+    <div class="nico" onclick="xt('Login / My Account')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <button class="nbook" onclick="xt('Opening appointment scheduler...')">Book Appointment</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"></div><div class="hbg2"></div><div class="hgrid"></div>
+  <div class="h-inner">
+    <div>
+      <div class="heyebrow">Est. 1952 — Seven Decades of Pure Gold Excellence</div>
+      <div class="htagline">A Symbol of Elegance · A Legacy of Trust</div>
+      <h1 class="hh"><span class="hw1">Discover</span><span class="hw2">Elegance</span><span class="hw3">A Legacy of Trust</span></h1>
+      <div class="hdiv"></div>
+      <p class="hp">Discover the world's finest handcrafted jewellery designed to make every moment golden. Where each piece tells an eternal story of love and legacy.</p>
+      <div class="hctas">
+        <button class="btn-p" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Collection</button>
+        <button class="btn-o" onclick="document.getElementById('cats').scrollIntoView({behavior:'smooth'})">Explore New Arrivals</button>
+        <button class="btn-g" onclick="xt('Playing Collection Film...')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Watch Collection Film</button>
+      </div>
+      <div class="htrust">
+        <span class="htb"><span class="htbd"></span>BIS Hallmark</span>
+        <span class="htb"><span class="htbd"></span>100% Authentic Gold</span>
+        <span class="htb"><span class="htbd"></span>Lifetime Exchange</span>
+        <span class="htb"><span class="htbd"></span>Free Insurance</span>
+        <span class="htb"><span class="htbd"></span>Secure Payments</span>
+        <span class="htb"><span class="htbd"></span>Trusted by Millions</span>
+      </div>
+    </div>
+    <!-- 3D HERO RIGHT -->
+    <div class="hright">
+      <div class="hscene">
+        <div class="haura"></div>
+        <div class="horb ho1"><div class="hodot"></div></div>
+        <div class="horb ho2"></div><div class="horb ho3"></div><div class="horb ho4"></div>
+        <div class="fgems">
+          <div class="fgem"><div class="fgs"></div></div><div class="fgem"><div class="fgs"></div></div>
+          <div class="fgem"><div class="fgs"></div></div><div class="fgem"><div class="fgs"></div></div>
+          <div class="fgem"><div class="fgs"></div></div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <div class="hnk-wrap"><div class="hnk-bob">
+            <div class="hnk-arc">
+              <div class="hndot" style="top:2%;left:9%"></div><div class="hndot" style="top:-18%;left:24%"></div>
+              <div class="hndot" style="top:-26%;left:46%"></div><div class="hndot" style="top:-18%;left:68%"></div>
+              <div class="hndot" style="top:2%;left:83%"></div>
+            </div>
+            <div class="hnk-pend">
+              <div class="hnk-pcl"></div><div class="hnk-pcl"></div><div class="hnk-pcl"></div>
+              <div style="position:relative"><div class="hnk-pmain"></div><div class="hnk-gem"></div></div>
+            </div>
+          </div></div>
+        </div>
+        <div class="hfc"><div class="hfc-l">24K Live Rate</div><div class="hfc-v" id="hfc24">₹ 6,284/g</div><div class="hfc-s">▲ +0.32% Today</div></div>
+        <div class="hfc"><div class="hfc-l">New Arrival</div><div class="hfc-v">Diamond Set</div><div class="hfc-s">GIA Certified · ₹ 3,85,000</div></div>
+        <div class="hfc"><div class="hfc-l">Special Offer</div><div class="hfc-v">0% EMI</div><div class="hfc-s">Upto 24 months · 6 Banks</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hstats">
+    <div class="hs"><span class="hs-v">25+</span><span class="hs-l">Years of Trust</span></div>
+    <div class="hs"><span class="hs-v">1M+</span><span class="hs-l">Happy Customers</span></div>
+    <div class="hs"><span class="hs-v">100+</span><span class="hs-l">Exclusive Stores</span></div>
+    <div class="hs"><span class="hs-v">50K+</span><span class="hs-l">Designs</span></div>
+    <div class="hs"><span class="hs-v">4.9★</span><span class="hs-l">Customer Rating</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mqband"><div class="mqt">
+  <span>Gold Necklaces</span><span>Diamond Jewellery</span><span>Gold Chains</span><span>Bridal Collection</span><span>Wedding Rings</span><span>Bangles</span><span>Earrings</span><span>Kids Collection</span><span>Men's Collection</span><span>Kundan Jewellery</span><span>Temple Jewellery</span><span>Mangalsutra</span><span>BIS Hallmarked</span><span>GIA Certified</span><span>Lifetime Exchange</span><span>Free Insurance</span>
+  <span>Gold Necklaces</span><span>Diamond Jewellery</span><span>Gold Chains</span><span>Bridal Collection</span><span>Wedding Rings</span><span>Bangles</span><span>Earrings</span><span>Kids Collection</span><span>Men's Collection</span><span>Kundan Jewellery</span><span>Temple Jewellery</span><span>Mangalsutra</span><span>BIS Hallmarked</span><span>GIA Certified</span><span>Lifetime Exchange</span><span>Free Insurance</span>
+</div></div>
+
+<!-- TRUST STRIP -->
+<section id="tstrip"><div class="ts-in">
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 4 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-4 5"/></svg></div><div><div class="tsi-t">BIS Hallmark Certified</div><div class="tsi-s">Every piece certified</div></div></div>
+  <div class="tsdiv"></div>
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M11 3 8 9l4 12 4-12-3-6"/></svg></div><div><div class="tsi-t">100% Authentic Gold</div><div class="tsi-s">Purity guaranteed</div></div></div>
+  <div class="tsdiv"></div>
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div><div><div class="tsi-t">Lifetime Exchange</div><div class="tsi-s">At full gold rate</div></div></div>
+  <div class="tsdiv"></div>
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="tsi-t">Free Insurance</div><div class="tsi-s">1 year on every purchase</div></div></div>
+  <div class="tsdiv"></div>
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="11" width="16" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><div><div class="tsi-t">Secure Payments</div><div class="tsi-s">UPI · Cards · EMI</div></div></div>
+  <div class="tsdiv"></div>
+  <div class="tsi"><div class="tsi-icon"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2.2C10.5 5.2 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></div><div><div class="tsi-t">Trusted by Millions</div><div class="tsi-s">1M+ happy families</div></div></div>
+</div></section>
+
+<!-- SHOP BY CATEGORY -->
+<section id="cats"><div class="cats-in">
+  <div class="rev" style="text-align:center;margin-bottom:3rem">
+    <div class="slbl slbl-c">Shop by Category</div>
+    <h2 class="stitle" style="text-align:center">Shop By <span class="ig">Category</span></h2>
+  </div>
+  <div class="cats-scroll rev">
+    <div class="cpill" onclick="filterP('all')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Gold Jewellery</div></div>
+    <div class="cpill" onclick="filterP('diamond')"><div class="cpill-img" style="border-color:rgba(150,200,255,.3);background-image:url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Diamond</div></div>
+    <div class="cpill" onclick="filterP('bridal')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=200&q=70');background-size:cover;background-position:center 25%"></div><div class="cpill-n">Bridal</div></div>
+    <div class="cpill" onclick="filterP('wedding')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Wedding</div></div>
+    <div class="cpill" onclick="filterP('all')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Daily Wear</div></div>
+    <div class="cpill" onclick="filterP('all')"><div class="cpill-img" style="border-color:rgba(200,220,255,.2);background-image:url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Platinum</div></div>
+    <div class="cpill" onclick="filterP('all')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Temple</div></div>
+    <div class="cpill" onclick="filterP('kids')"><div class="cpill-img"><div class="cpill-ico"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div></div><div class="cpill-n">Kids</div></div>
+    <div class="cpill" onclick="filterP('men')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1620656798932-762a4ea93c19?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Men's</div></div>
+    <div class="cpill" onclick="filterP('all')"><div class="cpill-img" style="background-image:url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=200&q=70');background-size:cover;background-position:center"></div><div class="cpill-n">Luxury</div></div>
+  </div>
+</div></section>
+
+<!-- 3D VIEWER -->
+<section id="viewer"><div class="vwr-in">
+  <div class="vwr-box rev">
+    <div class="vl">
+      <div class="vl-title">3D Jewellery<br>Experience</div>
+      <div class="vfeat"><div class="vfeat-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div><div><div class="vft">360° Product View</div><div class="vfd">Rotate in any direction</div></div></div>
+      <div class="vfeat"><div class="vfeat-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></div><div><div class="vft">Zoom In/Out</div><div class="vfd">See every micro detail</div></div></div>
+      <div class="vfeat"><div class="vfeat-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div><div class="vft">AR Try-On</div><div class="vfd">See it on yourself</div></div></div>
+      <div class="vfeat"><div class="vfeat-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21 21 3M3 21h18M3 21V3"/></svg></div><div><div class="vft">Multiple Angles</div><div class="vfd">Front, side, top views</div></div></div>
+      <div class="vfeat"><div class="vfeat-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l1-4h16l1 4M3 8v12h18V8M3 8h18M6 4l2 4M11 4l2 4M16 4l2 4"/></svg></div><div><div class="vft">HD Videos</div><div class="vfd">Watch shine in light</div></div></div>
+      <button class="v3dbtn" onclick="xt('Opening 3D Collection viewer...')">View 3D Collection</button>
+    </div>
+    <div class="vc" style="background-image:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 0%,rgba(5,3,1,.85) 75%),url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=700&q=70');background-size:cover;background-position:center">
+      <div class="vc-glow"></div>
+      <div class="vc-nav"><button class="vc-arr" onclick="xt('Previous')">‹</button><button class="vc-arr" onclick="xt('Next')">›</button></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.9rem">
+        <div class="vc-ring"><div class="vc-ro"><div class="vc-ri"><div class="vc-gem"></div></div></div></div>
+        <div class="vc-thumbs">
+          <div class="vc-th act"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="15" r="6"/><path d="M9 9 12 3l3 6"/></svg></div><div class="vc-th" onclick="xt('Necklace view')"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="4" r="1.6"/><circle cx="6" cy="8" r="1.6"/><circle cx="18" cy="8" r="1.6"/><circle cx="4" cy="14" r="1.6"/><circle cx="20" cy="14" r="1.6"/><path d="M12 19c-4 0-7-2.5-7-5.5M12 19c4 0 7-2.5 7-5.5"/><path d="M9 19h6l-1.5 3h-3z"/></svg></div>
+          <div class="vc-th" onclick="xt('Bangle view')">⭕</div><div class="vc-th" onclick="xt('Earring view')"></div>
+        </div>
+        <div class="vc-dots"><div class="vc-dot act"></div><div class="vc-dot"></div><div class="vc-dot"></div><div class="vc-dot"></div></div>
+      </div>
+    </div>
+    <div class="vr">
+      <div class="vr-tag">Royal Diamond Collection · 18KT Gold</div>
+      <div class="vr-name">Royal Diamond Ring</div>
+      <div class="vr-ref">Ref: RGP-DR-4821 · IGI Certified</div>
+      <div class="vr-price">₹ 78,950</div>
+      <div class="vr-tax">Inclusive of all taxes</div>
+      <div class="vr-specs">
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2.2C10.5 5.2 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></div><div class="spec-l">Gold Purity</div><div class="spec-v">18KT Hallmarked</div></div>
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M11 3 8 9l4 12 4-12-3-6"/></svg></div><div class="spec-l">Diamond</div><div class="spec-v">0.75 Ct, VVS-IF</div></div>
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0L5 7zM19 7l-3 7a3.5 3.5 0 0 0 6 0L19 7zM8 21h8"/></svg></div><div class="spec-l">Gross Weight</div><div class="spec-v">4.800 g</div></div>
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="7" rx="8" ry="3.5"/><path d="M4 7v5c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V7M4 12v5c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5v-5"/></svg></div><div class="spec-l">Making Charges</div><div class="spec-v">₹ 12,500</div></div>
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 4 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-4 5"/></svg></div><div class="spec-l">Certification</div><div class="spec-v">IGI Certified</div></div>
+        <div class="spec"><div class="spec-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><div class="spec-l">EMI</div><div class="spec-v">₹ 2,198/mo</div></div>
+      </div>
+      <div class="vr-btns">
+        <button class="vr-add" onclick="addC('Royal Diamond Ring','₹ 78,950','')">Add to Cart</button>
+        <button class="vr-buy" onclick="xt('Secure checkout...')">Buy Now</button>
+      </div>
+      <div class="vr-emi">0% EMI from <b>₹ 2,198/month</b> · 6 banks</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- BRIDAL -->
+<section id="bridal"><div class="brl-in">
+  <div class="brl-hero rev">
+    <div class="brl-left">
+      <div class="brl-tag">Royal Collection</div>
+      <div class="brl-title">Royal <span class="ig">Bridal</span><br>Collection</div>
+      <p class="brl-p">Crafted for your most precious moments. Timeless beauty for your timeless love. Every piece a heirloom to be cherished across generations.</p>
+      <button class="btn-p" onclick="filterP('bridal')">Explore Bridal Collection</button>
+    </div>
+    <div class="brl-center" style="background-image:linear-gradient(90deg,rgba(15,8,2,.5) 0%,transparent 30%,transparent 70%,rgba(15,8,2,.5) 100%),url('https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=900&q=80');background-size:cover;background-position:center 20%">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 55%,rgba(201,168,76,.1),transparent 65%)"></div>
+    </div>
+    <div class="brl-right">
+      <div class="bsvc"><div class="bsvc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v3M9 8l3-3 3 3M5 21V10l7-5 7 5v11M9 21v-6h6v6M3 21h18"/></svg></div><div class="bsvc-t">Wedding Packages</div><div class="bsvc-d">Customised jewellery packages for the complete bride</div></div>
+      <div class="bsvc"><div class="bsvc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3l3 2 3-2 2 4-3 2 1 12H7l1-12-3-2z"/></svg></div><div class="bsvc-t">Bride Styling</div><div class="bsvc-d">Personalised styling consultation with our experts</div></div>
+      <div class="bsvc"><div class="bsvc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><div class="bsvc-t">Book Appointment</div><div class="bsvc-d">Virtual or in-store at your convenience</div></div>
+      <button class="btn-o" style="width:100%;padding:.75rem;margin-top:.4rem" onclick="xt('Opening bridal consultation...')">Book Bridal Consultation</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- PRODUCTS -->
+<section id="products" style="background:rgba(5,3,2,.95)"><div class="prod-in">
+  <div class="prod-head rev">
+    <div><div class="slbl">Featured</div><h2 class="stitle">Our <span class="ig">Collections</span></h2></div>
+    <p class="ssub" style="max-width:240px">Handpicked jewellery for every occasion</p>
+  </div>
+  <div class="ftabs rev">
+    <button class="ftab act" onclick="filterP('all',this)">All</button>
+    <button class="ftab" onclick="filterP('necklaces',this)">Necklaces</button>
+    <button class="ftab" onclick="filterP('chains',this)">Gold Chains</button>
+    <button class="ftab" onclick="filterP('diamond',this)">Diamond</button>
+    <button class="ftab" onclick="filterP('rings',this)">Rings</button>
+    <button class="ftab" onclick="filterP('bangles',this)">Bangles</button>
+    <button class="ftab" onclick="filterP('earrings',this)">Earrings</button>
+    <button class="ftab" onclick="filterP('bridal',this)">Bridal</button>
+    <button class="ftab" onclick="filterP('wedding',this)">Wedding</button>
+    <button class="ftab" onclick="filterP('mangalsutra',this)">Mangalsutra</button>
+    <button class="ftab" onclick="filterP('kids',this)">Kids</button>
+    <button class="ftab" onclick="filterP('men',this)">Men's</button>
+  </div>
+  <div class="pgrid rev" id="pgrid">
+    <!-- FEATURED: Bridal Necklace -->
+    <div class="pc feat" data-cat="necklaces bridal" data-pid="p01">
+      <span class="pc-badge pb-e">Signature</span>
+      <button class="admin-edit-btn" onclick="openEdit('p01')">Edit</button>
+      <div class="pc-img has-photo" id="img-p01" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=700&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Bridal Necklace · 22K Gold</div><div class="pc-name" id="name-p01">Maharani Heritage Necklace</div><div class="pc-price" id="price-p01">₹ 2,85,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p01')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Diamond Necklace -->
+    <div class="pc" data-cat="diamond necklaces" data-pid="p02">
+      <span class="pc-badge pb-d">GIA ✓</span>
+      <button class="admin-edit-btn" onclick="openEdit('p02')">Edit</button>
+      <div class="pc-img has-photo" id="img-p02" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=80')"><div class="pc-glow" style="background:radial-gradient(ellipse 65% 65% at 50% 40%,rgba(130,185,255,.16),transparent 65%)"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Diamond Necklace · 18K White Gold</div><div class="pc-name" id="name-p02">Starfall Diamond Necklace</div><div class="pc-price" id="price-p02">₹ 5,85,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p02')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Rope Chain -->
+    <div class="pc" data-cat="chains" data-pid="p03">
+      <span class="pc-badge pb-g">New Design</span>
+      <button class="admin-edit-btn" onclick="openEdit('p03')">Edit</button>
+      <div class="pc-img has-photo" id="img-p03" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1620656798932-762a4ea93c19?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Rope Chain · 22K Gold</div><div class="pc-name" id="name-p03">Royal Rope Chain</div><div class="pc-price" id="price-p03">₹ 78,500</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p03')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Ring -->
+    <div class="pc" data-cat="rings" data-pid="p04">
+      <span class="pc-badge pb-h">Bestseller</span>
+      <button class="admin-edit-btn" onclick="openEdit('p04')">Edit</button>
+      <div class="pc-img has-photo" id="img-p04" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Ring · 22K Gold</div><div class="pc-name" id="name-p04">Maharani Kundan Ring</div><div class="pc-price" id="price-p04">₹ 42,500</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p04')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Kundan Necklace -->
+    <div class="pc" data-cat="necklaces" data-pid="p05">
+      <span class="pc-badge pb-e">Traditional</span>
+      <button class="admin-edit-btn" onclick="openEdit('p05')">Edit</button>
+      <div class="pc-img has-photo" id="img-p05" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Kundan Necklace · 22K</div><div class="pc-name" id="name-p05">Rajputana Kundan Haar</div><div class="pc-price" id="price-p05">₹ 2,45,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p05')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Bangle -->
+    <div class="pc" data-cat="bangles" data-pid="p06">
+      <button class="admin-edit-btn" onclick="openEdit('p06')">Edit</button>
+      <div class="pc-img has-photo" id="img-p06" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Bangles · 22K Gold</div><div class="pc-name" id="name-p06">Kangan Classique Set</div><div class="pc-price" id="price-p06">₹ 68,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p06')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Earrings -->
+    <div class="pc" data-cat="earrings" data-pid="p07">
+      <span class="pc-badge pb-g">New</span>
+      <button class="admin-edit-btn" onclick="openEdit('p07')">Edit</button>
+      <div class="pc-img has-photo" id="img-p07" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Earrings · 18K Gold</div><div class="pc-name" id="name-p07">Jhumki Royale</div><div class="pc-price" id="price-p07">₹ 28,750</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p07')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Wedding -->
+    <div class="pc" data-cat="wedding" data-pid="p08">
+      <span class="pc-badge pb-e">Couples</span>
+      <button class="admin-edit-btn" onclick="openEdit('p08')">Edit</button>
+      <div class="pc-img has-photo" id="img-p08" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Wedding Bands · 22K</div><div class="pc-name" id="name-p08">Eternal Bond Pair</div><div class="pc-price" id="price-p08">₹ 95,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p08')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Mangalsutra -->
+    <div class="pc" data-cat="mangalsutra" data-pid="p09">
+      <button class="admin-edit-btn" onclick="openEdit('p09')">Edit</button>
+      <div class="pc-img has-photo" id="img-p09" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Mangalsutra · 22K Gold</div><div class="pc-name" id="name-p09">Pavitra Mangalsutra</div><div class="pc-price" id="price-p09">₹ 38,500</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p09')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Kids -->
+    <div class="pc" data-cat="kids" data-pid="p10">
+      <span class="pc-badge pb-g">Kids</span>
+      <button class="admin-edit-btn" onclick="openEdit('p10')">Edit</button>
+      <div class="pc-img" id="img-p10"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+        <div class="pj"><div class="jkds"><div class="jk"></div><div class="jk"></div><div class="jk"></div><div class="jk"></div></div></div>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Kids · 18K Gold</div><div class="pc-name" id="name-p10">Little Princess Set</div><div class="pc-price" id="price-p10">₹ 12,500</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p10')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Men's -->
+    <div class="pc" data-cat="men chains" data-pid="p11">
+      <span class="pc-badge pb-h">Men's</span>
+      <button class="admin-edit-btn" onclick="openEdit('p11')">Edit</button>
+      <div class="pc-img has-photo" id="img-p11" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1620656798932-762a4ea93c19?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Men's Chain · 22K</div><div class="pc-name" id="name-p11">Duke Men's Chain</div><div class="pc-price" id="price-p11">₹ 1,10,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="addCFromCard('p11')">Add to Cart</button></div>
+      </div>
+    </div>
+    <!-- Bridal set -->
+    <div class="pc" data-cat="bridal" data-pid="p12">
+      <span class="pc-badge pb-e">Exclusive</span>
+      <button class="admin-edit-btn" onclick="openEdit('p12')">Edit</button>
+      <div class="pc-img has-photo" id="img-p12" style="background-image:linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=80')"><div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>
+      </div>
+      <div class="pc-info"><div class="pc-tag">Bridal Set · 22K Gold</div><div class="pc-name" id="name-p12">Rani Haar Bridal Set</div><div class="pc-price" id="price-p12">₹ 8,50,000</div>
+        <div class="pc-foot"><button class="pc-btn" onclick="xt('Connecting to bridal advisor...')">Enquire</button></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- LIVE RATES -->
+<section id="liverates"><div class="lr-in">
+  <div class="lr-left rev">
+    <div class="livebdg"><div class="lpulse"></div>Live Market Rate</div>
+    <div class="slbl">Today's Market</div>
+    <h2 class="stitle">Live Gold <span class="ig">Rates</span></h2>
+    <div class="ri-items">
+      <div class="ri"><div class="ri-l"><div class="ri-k">24 Karat · 999.9 Pure (10gm)</div><div class="ri-p" id="r24">₹ 71,620</div><div class="ri-u">per 10 grams · today</div></div><div class="ri-r"><div class="ri-c ri-up">▲ +1.25%</div><canvas class="ri-ch" id="mc1"></canvas></div></div>
+      <div class="ri"><div class="ri-l"><div class="ri-k">22 Karat · 916 (10gm)</div><div class="ri-p" id="r22">₹ 65,710</div><div class="ri-u">per 10 grams · today</div></div><div class="ri-r"><div class="ri-c ri-up">▲ +1.18%</div><canvas class="ri-ch" id="mc2"></canvas></div></div>
+      <div class="ri"><div class="ri-l"><div class="ri-k">18 Karat · 750 (10gm)</div><div class="ri-p" id="r18" style="font-size:1.15rem">₹ 53,760</div><div class="ri-u">per 10 grams · today</div></div><div class="ri-r"><div class="ri-c ri-up">▲ +0.98%</div><canvas class="ri-ch" id="mc3"></canvas></div></div>
+      <div class="ri"><div class="ri-l"><div class="ri-k">Silver · 999</div><div class="ri-p" id="rsi" style="font-size:1.15rem">₹ 745</div><div class="ri-u">per 10 grams · today</div></div><div class="ri-r"><div class="ri-c ri-dn">▼ -0.52%</div><canvas class="ri-ch" id="mc4"></canvas></div></div>
+    </div>
+  </div>
+  <div class="lr-right rev">
+    <div class="slbl">Price History</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--plat);margin-bottom:1rem">24K Gold <span class="ig">Rate Chart</span></h3>
+    <div class="chart-labels"><span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span><span>Today</span></div>
+    <div class="chart-area"><canvas id="mainchart" width="100%" height="190"></canvas></div>
+    <button class="chart-view-btn" onclick="xt('Opening full gold rate chart...')">View Gold Rate Chart</button>
+  </div>
+</div></section>
+
+<!-- AI ASSISTANT -->
+<section id="aiass"><div class="ai-in">
+  <div class="rev">
+    <div class="slbl">AI Powered</div>
+    <h2 class="stitle">Meet <span class="ig">Ratna</span><br>Your Jewellery AI</h2>
+    <p style="font-size:.98rem;font-style:italic;color:rgba(245,237,214,.45);line-height:1.88;margin-bottom:2rem">Ratna is your intelligent 24/7 jewellery advisor — recommending perfect pieces for every occasion, budget, and style.</p>
+    <div style="display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2rem">
+      <div class="ai-feat"><div class="af-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="15" r="6"/><path d="M9 9 12 3l3 6"/></svg></div><div><div class="af-t">Jewellery Recommendation AI</div><p class="af-d">Describe your occasion, budget, and style — Ratna finds the perfect piece.</p></div></div>
+      <div class="ai-feat"><div class="af-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v3M9 8l3-3 3 3M5 21V10l7-5 7 5v11M9 21v-6h6v6M3 21h18"/></svg></div><div><div class="af-t">Wedding Collection Advisor</div><p class="af-d">Complete bridal jewellery planning from engagement to reception.</p></div></div>
+      <div class="ai-feat"><div class="af-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="11" rx="1"/><path d="M3 9V6h18v3M12 9v11M12 9c-1.5-4-6-5-6-2 0 1.3 1.3 2 3 2M12 9c1.5-4 6-5 6-2 0 1.3-1.3 2-3 2"/></svg></div><div><div class="af-t">Gift Suggestion AI</div><p class="af-d">Tell us who it's for and your budget — curated gifts in seconds.</p></div></div>
+      <div class="ai-feat"><div class="af-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="11" r="7"/><path d="M6 19h12l-1.5 2h-9z"/></svg></div><div><div class="af-t">AR Try-On Preview</div><p class="af-d">See how any jewellery looks on you before purchase.</p></div></div>
+    </div>
+  </div>
+  <div class="rev">
+    <div class="ai-widget">
+      <div class="aw-head"><div class="aw-av">✦</div><div><div class="aw-name">Ratna AI — Jewellery Advisor</div><div class="aw-st"><div class="aw-dot"></div>Online · Instant Reply</div></div></div>
+      <div class="aw-msgs" id="awmsgs">
+        <div class="awm bot">Namaste! I'm Ratna, your personal jewellery advisor at Royal Gold Palace. How may I help you find the perfect piece today?</div>
+        <div class="awm usr">Looking for a bridal necklace under ₹3 lakhs</div>
+        <div class="awm bot">Wonderful! For bridal necklaces under ₹3 lakhs in 22K gold, I'd recommend our Maharani Heritage Necklace (₹2,85,000) — Kundan-set with royal craftsmanship. Shall I show matching earrings and maang tikka too? <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2.2C10.5 5.2 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+      </div>
+      <div class="aw-sugs">
+        <button class="aw-sug" onclick="aiChat('Bridal jewellery under ₹5L')">Bridal under ₹5L</button>
+        <button class="aw-sug" onclick="aiChat('Diamond rings for anniversary')">Anniversary gift</button>
+        <button class="aw-sug" onclick="aiChat('Gold chain for daily wear')">Daily wear chain</button>
+        <button class="aw-sug" onclick="aiChat('Kids gold set')">Kids collection</button>
+      </div>
+      <div class="aw-inp">
+        <input class="aw-field" id="awfield" type="text" placeholder="Ask Ratna anything about jewellery...">
+        <button class="aw-send" onclick="aiSend()">Send</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CUSTOM DESIGNER -->
+<section id="designer"><div class="des-in">
+  <div class="des-hd rev"><div class="slbl slbl-c">Bespoke</div><h2 class="stitle" style="text-align:center">Design Your Own <span class="ig">Jewel</span></h2><p class="ssub" style="text-align:center;max-width:480px;margin:0 auto">Our master craftsmen bring your vision to life. Get a custom quote within 24 hours.</p></div>
+  <div class="des-grid rev">
+    <div>
+      <div class="dpanel">
+        <div class="dp-t">Jewellery Configurator</div>
+        <div class="dfield"><label class="dfl">Jewellery Type</label><select class="dfinp" id="jtype" onchange="updEst()"><option value="">Select type...</option><option value="necklace">Necklace / Haar</option><option value="ring">Ring</option><option value="bangle">Bangles</option><option value="earring">Earrings</option><option value="chain">Gold Chain</option><option value="pendant">Pendant</option><option value="bridal">Full Bridal Set</option></select></div>
+        <div class="dfrow"><div class="dfield"><label class="dfl">Gold Purity</label><select class="dfinp" id="jpurity" onchange="updEst()"><option value="24">24K (999.9)</option><option value="22" selected>22K (916)</option><option value="18">18K (750)</option><option value="14">14K (585)</option></select></div><div class="dfield"><label class="dfl">Weight (grams)</label><input class="dfinp" id="jwt" type="number" placeholder="e.g. 15" min="1" oninput="updEst()"></div></div>
+        <div class="dfield"><label class="dfl">Stone Preference</label><div class="dfopts"><button class="dfopt sel" onclick="selOpt(this)">No Stones</button><button class="dfopt" onclick="selOpt(this)">Diamonds</button><button class="dfopt" onclick="selOpt(this)">Kundan</button><button class="dfopt" onclick="selOpt(this)">Rubies</button><button class="dfopt" onclick="selOpt(this)">Emeralds</button></div></div>
+        <div class="dfield"><label class="dfl">Finish Style</label><div class="dfopts"><button class="dfopt sel" onclick="selOpt(this)">Polished</button><button class="dfopt" onclick="selOpt(this)">Matte</button><button class="dfopt" onclick="selOpt(this)">Antique</button><button class="dfopt" onclick="selOpt(this)">Textured</button></div></div>
+        <div class="dfield"><label class="dfl">Upload Inspiration</label><div class="dupzone" onclick="xt('File upload dialog opening...')"><div class="duz-i"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.5 12.5 21a4.5 4.5 0 0 1-6.4-6.4L15 5.7a3 3 0 0 1 4.3 4.2L10.4 19a1.5 1.5 0 0 1-2.1-2.1l8-8"/></svg></div><div class="duz-t">Click to upload · JPG, PNG, PDF</div></div></div>
+        <button class="btn-p" style="width:100%;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)" onclick="xt('Custom quote request sent! We will contact you within 24 hours.')">Get Custom Quote</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.4rem">
+      <div class="dprev" style="flex:1;min-height:260px"><div class="dprev-glow"></div><div class="dprev-vis"><div class="jnm" style="transform:scale(1.2)"><div class="jnm-a" style="width:110px;height:55px;border-width:4px"></div><div class="jnm-p" style="width:28px;height:36px"></div></div></div><div class="dprev-hint">Live 3D Preview · Rotate with mouse</div></div>
+      <div class="dpanel" style="padding:1.8rem">
+        <div class="dp-t" style="font-size:.8rem;margin-bottom:1.1rem">Price Estimate</div>
+        <div class="pest">
+          <div class="pe-row"><span class="pe-l">Gold Value</span><span class="pe-v" id="est-g">₹ —</span></div>
+          <div class="pe-row"><span class="pe-l">Making Charges</span><span class="pe-v" id="est-m">₹ —</span></div>
+          <div class="pe-row"><span class="pe-l">GST (3%)</span><span class="pe-v" id="est-t">₹ —</span></div>
+          <div class="pe-total"><span class="pe-tl">Estimated Total</span><span class="pe-tv" id="est-total">₹ —</span></div>
+        </div>
+        <div style="margin-top:.8rem;font-family:'Rajdhani',sans-serif;font-size:.56rem;letter-spacing:.1em;color:var(--plat3)">* Final price based on confirmed weight & current gold rate.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- TRUST -->
+<section id="trust"><div class="tr-in">
+  <div style="text-align:center;margin-bottom:2.8rem" class="rev"><div class="slbl slbl-c">Our Promise</div><h2 class="stitle" style="text-align:center">Why Royal Gold <span class="ig">Palace</span></h2></div>
+  <div class="tr-grid rev">
+    <div class="tri"><div class="tri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 4 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-4 5"/></svg></div><div class="tri-t">BIS Hallmarked</div><p class="tri-d">Every piece certified by Bureau of Indian Standards. Zero compromise on purity.</p></div>
+    <div class="tri"><div class="tri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div><div class="tri-t">Lifetime Exchange</div><p class="tri-d">Exchange at full current gold rate. No questions, no deductions, ever.</p></div>
+    <div class="tri"><div class="tri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="tri-t">Free Insurance</div><p class="tri-d">Every purchase above ₹50,000 insured free for one year.</p></div>
+    <div class="tri"><div class="tri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M11 3 8 9l4 12 4-12-3-6"/></svg></div><div class="tri-t">GIA Certified</div><p class="tri-d">All diamond jewellery comes with GIA or IGI certification.</p></div>
+    <div class="tri"><div class="tri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 3h13v13H1zM14 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg></div><div class="tri-t">Secure Delivery</div><p class="tri-d">GPS tracked, fully insured, tamper-evident packaging pan-India.</p></div>
+  </div>
+</div></section>
+
+<!-- EMI -->
+<section id="emi"><div class="emi-in">
+  <div class="rev"><div class="slbl">Easy Finance</div><h2 class="stitle">0% Interest <span class="ig">EMI</span></h2>
+    <p class="emi-body">Own your dream jewellery today. Pay in easy instalments over 3–24 months. No hidden charges, no interest on select plans with partner banks.</p>
+    <div class="paymths">
+      <div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span>UPI Payment</div><div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>Credit / Debit Card</div>
+      <div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-6 9 6M4 10v9M9 10v9M15 10v9M20 10v9M2 21h20"/></svg></span>Net Banking</div><div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>No-Cost EMI</div>
+      <div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="7" rx="8" ry="3.5"/><path d="M4 7v5c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5V7M4 12v5c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5v-5"/></svg></span>Gold Exchange</div><div class="pym"><span class="pym-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></span>Pay at Store</div>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap"><span style="font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.3rem .8rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3)">HDFC</span><span style="font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.3rem .8rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3)">ICICI</span><span style="font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.3rem .8rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3)">SBI</span><span style="font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.3rem .8rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3)">Axis</span><span style="font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;padding:.3rem .8rem;border:1px solid rgba(201,168,76,.18);color:var(--plat3)">Kotak</span></div>
+  </div>
+  <div class="ecalc rev">
+    <div class="ec-t">EMI Calculator</div>
+    <div class="ec-row"><div class="ec-field"><label>Price (₹)</label><input id="ep" type="number" placeholder="e.g. 150000" class="dfinp" oninput="calcE()"></div><div class="ec-field"><label>Down Payment (₹)</label><input id="ed" type="number" placeholder="e.g. 25000" class="dfinp" oninput="calcE()"></div></div>
+    <div class="ec-row"><div class="ec-field"><label>Tenure</label><select id="et" class="dfinp" onchange="calcE()"><option value="3">3 Months</option><option value="6">6 Months</option><option value="9">9 Months</option><option value="12" selected>12 Months</option><option value="18">18 Months</option><option value="24">24 Months</option></select></div><div class="ec-field"><label>Interest Rate</label><select id="er" class="dfinp" onchange="calcE()"><option value="0">0% (Partner Banks)</option><option value="10">10% p.a.</option><option value="12">12% p.a.</option><option value="15">15% p.a.</option></select></div></div>
+    <button class="ec-btn" onclick="calcE()">Calculate EMI</button>
+    <div class="ec-res" id="ecres"><div class="er-l">Monthly EMI</div><div class="er-v" id="erv">₹ 0</div><div class="er-n" id="ern"></div></div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section id="tst"><div class="tst-in">
+  <div class="tst-head rev"><div class="slbl slbl-c">Legacy</div><h2 class="stitle" style="text-align:center">Our Patrons <span class="ig">Speak</span></h2></div>
+  <div class="tst-grid">
+    <div class="tc rev"><span class="tc-stars">★★★★★</span><span class="tc-q">"</span><p class="tc-txt">My family has been buying from Royal Gold Palace since 1968. Three generations, and the quality never wavers. My granddaughter's bridal set was breathtaking.</p><div class="tc-auth"><div class="tc-av">P</div><div><div class="tc-name">Padmavathi Krishnan</div><div class="tc-loc">Hyderabad · Since 1968</div></div></div></div>
+    <div class="tc rev"><span class="tc-stars">★★★★★</span><span class="tc-q">"</span><p class="tc-txt">The diamond solitaire for our 25th anniversary was everything. GIA certified, perfect cut, and the service as luxurious as the jewellery itself. Truly world-class.</p><div class="tc-auth"><div class="tc-av">R</div><div><div class="tc-name">Rajesh Mehta</div><div class="tc-loc">Mumbai · Since 2001</div></div></div></div>
+    <div class="tc rev"><span class="tc-stars">★★★★★</span><span class="tc-q">"</span><p class="tc-txt">The AI tool suggested the perfect bridal set for my daughter. Delivered 3 days early, packaged like a gift from heaven. Royal Gold Palace is truly in a class of its own.</p><div class="tc-auth"><div class="tc-av">S</div><div><div class="tc-name">Sunita Agarwal</div><div class="tc-loc">Delhi · Since 2019</div></div></div></div>
+  </div>
+</div></section>
+
+<!-- STATS -->
+<section id="stats"><div class="stats-in rev">
+  <div class="si"><div class="si-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M4 21V10M20 21V10M2 10l10-6 10 6M6 10v7M10 10v7M14 10v7M18 10v7"/></svg></div><span class="si-v">25+</span><span class="si-l">Years of Trust</span></div>
+  <div class="si"><div class="si-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="6" r="2.3"/><circle cx="16" cy="6" r="2.3"/><circle cx="6" cy="17" r="1.8"/><circle cx="18" cy="17" r="1.8"/><path d="M4 14c0-3 2-5 4-5M20 14c0-3-2-5-4-5M8 9v3M16 9v3"/></svg></div><span class="si-v">1M+</span><span class="si-l">Happy Customers</span></div>
+  <div class="si"><div class="si-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></div><span class="si-v">100+</span><span class="si-l">Exclusive Stores</span></div>
+  <div class="si"><div class="si-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M11 3 8 9l4 12 4-12-3-6"/></svg></div><span class="si-v">50K+</span><span class="si-l">Designs</span></div>
+  <div class="si"><div class="si-ico"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><span class="si-v">4.9★</span><span class="si-l">Customer Rating</span></div>
+</div></section>
+
+<!-- LOYALTY -->
+<section id="loyalty"><div class="loy-in">
+  <div class="loy-box rev">
+    <div><div class="loy-t">Royal Rewards Programme</div><p class="loy-p">Every purchase earns Royal Points. Redeem for discounts, exclusive previews, and VIP access to private jewellery shows. Join 1,00,000+ loyal members.</p><button class="btn-p" onclick="xt('Joining Royal Rewards...')">Join Free · Earn Points</button></div>
+    <div>
+      <div class="tiers">
+        <div class="tier t-sil"><div class="tier-n">Silver</div><div class="tier-p">0 – 10K pts</div></div>
+        <div class="tier t-gld"><div class="tier-n">Gold</div><div class="tier-p">10K – 50K</div></div>
+        <div class="tier t-plt"><div class="tier-n">Platinum</div><div class="tier-p">50K – 1L</div></div>
+        <div class="tier t-roy"><div class="tier-n">Royal ✦</div><div class="tier-p">1L+ pts</div></div>
+      </div>
+      <div class="tier-perks">Benefits: Priority service · Free polishing · Birthday surprise · Private previews · 0% EMI on all plans</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- STORE LOCATOR -->
+<section id="stores"><div class="st-in">
+  <div class="st-head rev"><div class="slbl slbl-c">Visit Us</div><h2 class="stitle" style="text-align:center">Our <span class="ig">Showrooms</span></h2></div>
+  <div class="st-grid rev">
+    <div class="st-list">
+      <div class="sl act" onclick="selStore(this,'Mumbai')"><div class="sl-city">Mumbai — Flagship</div><div class="sl-addr">No. 1, Gold Lane, Zaveri Bazaar, Mumbai 400002</div><div class="sl-meta"><span class="sl-bdg">Open · 10am–9pm</span><span class="sl-bdg">Flagship</span></div></div>
+      <div class="sl" onclick="selStore(this,'Delhi')"><div class="sl-city">New Delhi — Connaught Place</div><div class="sl-addr">F-12, Connaught Place, New Delhi 110001</div><div class="sl-meta"><span class="sl-bdg">Open · 10am–8:30pm</span></div></div>
+      <div class="sl" onclick="selStore(this,'Hyderabad')"><div class="sl-city">Hyderabad — Banjara Hills</div><div class="sl-addr">Road No. 2, Banjara Hills, Hyderabad 500034</div><div class="sl-meta"><span class="sl-bdg">Open · 10am–9pm</span></div></div>
+      <div class="sl" onclick="selStore(this,'Bangalore')"><div class="sl-city">Bangalore — Brigade Road</div><div class="sl-addr">45, Brigade Road, Bengaluru 560025</div><div class="sl-meta"><span class="sl-bdg">Open · 10am–9pm</span></div></div>
+      <div class="sl" onclick="selStore(this,'Chennai')"><div class="sl-city">Chennai — T. Nagar</div><div class="sl-addr">28, Usman Road, T. Nagar, Chennai 600017</div><div class="sl-meta"><span class="sl-bdg">Open · 9:30am–9pm</span></div></div>
+      <button class="btn-o" style="width:100%;padding:.78rem;margin-top:.3rem" onclick="xt('Finding nearest store...')">Find Nearest Store</button>
+    </div>
+    <div class="st-map">
+      <div class="map-grid"></div>
+      <div class="map-pin" style="top:35%;left:22%;"><div class="map-dot"></div><div class="map-lbl" id="maplbl">Mumbai ★</div></div>
+      <div class="map-pin" style="top:20%;left:42%;"><div class="map-dot sm"></div><div class="map-lbl">Delhi</div></div>
+      <div class="map-pin" style="top:54%;left:56%;"><div class="map-dot sm"></div><div class="map-lbl">Hyderabad</div></div>
+      <div class="map-pin" style="top:68%;left:48%;"><div class="map-dot sm"></div><div class="map-lbl">Bangalore</div></div>
+      <div class="map-pin" style="top:72%;left:56%;"><div class="map-dot sm"></div><div class="map-lbl">Chennai</div></div>
+      <div class="map-hint" style="position:relative;z-index:1;padding:1.5rem;text-align:center"><div class="map-hint-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> 5 Premium Showrooms</div><div class="map-hint-sub">Click a city to view store details</div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section id="cta">
+  <span class="cta-pre rev">Begin Your Legacy</span>
+  <h2 class="cta-h rev">Pure Gold.<br><span class="ig">Pure Trust.</span><br>Since 1952.</h2>
+  <p class="cta-p rev">More luxurious than Tanishq. More trusted than Kalyan. More precious than Cartier.</p>
+  <div class="cta-btns rev">
+    <button class="btn-p" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop the Collection</button>
+    <button class="btn-o" onclick="xt('Opening private appointment booking...')">Book Private Appointment</button>
+    <button class="btn-g" onclick="document.getElementById('designer').scrollIntoView({behavior:'smooth'})">Design Custom Jewellery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="cta-nums rev">
+    <div class="cn-i"><span class="cn-v">70+</span><span class="cn-l">Years Legacy</span></div>
+    <div class="cn-i"><span class="cn-v">1M+</span><span class="cn-l">Happy Families</span></div>
+    <div class="cn-i"><span class="cn-v">25K+</span><span class="cn-l">Jewellery Designs</span></div>
+    <div class="cn-i"><span class="cn-v">₹100Cr+</span><span class="cn-l">Gold Delivered</span></div>
+    <div class="cn-i"><span class="cn-v">4.9★</span><span class="cn-l">Customer Rating</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.28rem"><span style="font-size:1.3rem;filter:drop-shadow(0 0 8px rgba(201,168,76,.7))">♛</span><span style="font-family:'Cinzel',serif;font-size:1.05rem;font-weight:900;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.2em">ROYAL GOLD PALACE</span></div>
+      <div style="font-family:'Rajdhani',sans-serif;font-size:.42rem;letter-spacing:.45em;color:var(--plat3);text-transform:uppercase;margin-bottom:1rem">Est. 1952 · Pure Gold · Certified</div>
+      <p class="ft-about">Seven decades of trust. India's most premium gold and diamond jewellery. Crafted with love, certified with pride, delivered with care to 1M+ families.</p>
+      <div class="ft-soc"><div class="fts">f</div><div class="fts">ig</div><div class="fts">yt</div><div class="fts">tw</div><div class="fts">in</div></div>
+    </div>
+    <div class="ft-col"><h4>Quick Links</h4><ul class="ft-links"><li><a href="#">Home</a></li><li><a href="#">Collection</a></li><li><a href="#">Bridal</a></li><li><a href="#">Diamond</a></li><li><a href="#">Gold</a></li><li><a href="#">Platinum</a></li></ul></div>
+    <div class="ft-col"><h4>Customer Care</h4><ul class="ft-links"><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Cancellation</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+    <div class="ft-col"><h4>Our Services</h4><ul class="ft-links"><li><a href="#">Lifetime Exchange</a></li><li><a href="#">Buyback Guarantee</a></li><li><a href="#">Jewellery Insurance</a></li><li><a href="#">Free Shipping</a></li><li><a href="#">Gift Cards</a></li><li><a href="#">Store Locator</a></li></ul></div>
+    <div class="ft-col"><h4>Newsletter</h4><div class="ft-nl-t">Subscribe for Offers</div><p class="ft-nl-s">Get exclusive deals and new arrivals. Join 50,000+ subscribers.</p><div class="ft-nl-f"><input class="ft-nl-i" type="email" placeholder="Enter your email"><button class="ft-nl-b" onclick="xt('Subscribed! Welcome to Royal Gold Palace.')">→</button></div><div class="ft-pay-row"><div class="ftpay">VISA</div><div class="ftpay">Mastercard</div><div class="ftpay">RuPay</div><div class="ftpay">Paytm</div><div class="ftpay">UPI</div></div></div>
+  </div>
+  <div class="ft-bot"><span class="ft-copy">© 2024 Royal Gold Palace Pvt. Ltd. All rights reserved. BIS Lic. No. CM/L-7654321</span><div class="ft-certs"><span class="ftc">BIS Certified</span><span class="ftc">ISO 9001</span><span class="ftc">GIA Partner</span><span class="ftc">Lifetime Exchange</span></div></div>
+</footer>
+
+<!-- WHATSAPP -->
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;width:50px;height:50px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:0 4px 20px rgba(37,211,102,.4);font-size:1.4rem;transition:transform .3s" onclick="xt('Opening WhatsApp chat...')" onmouseenter="this.style.transform='scale(1.1)'" onmouseleave="this.style.transform='scale(1)'"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:22px;height:22px"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.1-1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+
+<script>
+// LOADER
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2500));
+// CURSOR
+const C1=document.getElementById('cur'),C2=document.getElementById('cur-r');
+document.addEventListener('mousemove',e=>{C1.style.left=e.clientX+'px';C1.style.top=e.clientY+'px';setTimeout(()=>{C2.style.left=e.clientX+'px';C2.style.top=e.clientY+'px'},75)});
+document.querySelectorAll('button,a,.cpill,.pc,.vfeat,.bsvc,.tc,.ri,.sl').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
+// FLOAT ORB
+const fo=document.getElementById('forb');
+document.addEventListener('mousemove',e=>{fo.style.left=(e.clientX-275)+'px';fo.style.top=(e.clientY-275)+'px'});
+// PARTICLES
+const bc=document.getElementById('bgc'),bx=bc.getContext('2d');
+const rbcf=()=>{bc.width=innerWidth;bc.height=innerHeight};rbcf();window.addEventListener('resize',rbcf);
+const bpts=Array.from({length:160},()=>({x:Math.random()*bc.width,y:Math.random()*bc.height,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1.5+.3,o:Math.random()*.42+.06,h:Math.random()*18+36}));
+(function bpd(){bx.clearRect(0,0,bc.width,bc.height);bpts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=bc.width;if(p.x>bc.width)p.x=0;if(p.y<0)p.y=bc.height;if(p.y>bc.height)p.y=0;bx.save();bx.globalAlpha=p.o;bx.fillStyle='hsl('+p.h+',62%,56%)';bx.beginPath();bx.arc(p.x,p.y,p.r,0,Math.PI*2);bx.fill();bx.restore()});requestAnimationFrame(bpd)})();
+// NAV SCROLL
+window.addEventListener('scroll',()=>document.getElementById('mnav').classList.toggle('scrolled',scrollY>60));
+// REVEAL
+const ro=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*55)})},{threshold:.08});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+// LIVE RATES
+const BASE={g24:71620,g22:65710,g18:53760,si:745};
+function dmc(id,up){const el=document.getElementById(id);if(!el)return;const ctx=el.getContext('2d');const w=el.width=78,h=el.height=28;const pts=Array.from({length:12},(_,i)=>({x:i/11*w,y:h/2+(Math.random()-.5)*h*.7*(up?-1:1)+(up?-i*.7:i*.7)}));const cl=up?'#4CAF50':'#f44336';const gr=ctx.createLinearGradient(0,0,0,h);gr.addColorStop(0,cl+'44');gr.addColorStop(1,'transparent');ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));ctx.strokeStyle=cl;ctx.lineWidth=1.5;ctx.stroke();ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();ctx.fillStyle=gr;ctx.fill()}
+function dMainChart(){const el=document.getElementById('mainchart');if(!el)return;const par=el.parentElement;const w=el.width=par.offsetWidth||380,h=el.height=par.offsetHeight||190;const ctx=el.getContext('2d');const pts=Array.from({length:30},(_,i)=>({x:i/29*w,y:h*.8-i*(h*.5/30)+(Math.random()-.5)*h*.14}));const gr=ctx.createLinearGradient(0,0,0,h);gr.addColorStop(0,'rgba(201,168,76,.28)');gr.addColorStop(1,'transparent');ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);pts.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));ctx.strokeStyle='#C9A84C';ctx.lineWidth=2;ctx.stroke();ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();ctx.fillStyle=gr;ctx.fill();const lp=pts[pts.length-1];ctx.beginPath();ctx.arc(lp.x,lp.y,4,0,Math.PI*2);ctx.fillStyle='#FFD700';ctx.fill();ctx.beginPath();ctx.arc(lp.x,lp.y,8,0,Math.PI*2);ctx.strokeStyle='rgba(255,215,0,.4)';ctx.lineWidth=2;ctx.stroke()}
+setTimeout(()=>{dmc('mc1',true);dmc('mc2',true);dmc('mc3',true);dmc('mc4',false);dMainChart()},600);
+function tickRates(){const j=()=>Math.round((Math.random()-.5)*50);const g24=BASE.g24+j(),g22=BASE.g22+j(),g18=BASE.g18+j();const fmt=v=>'₹ '+v.toLocaleString('en-IN');document.getElementById('r24').textContent=fmt(g24);document.getElementById('r22').textContent=fmt(g22);document.getElementById('r18').textContent=fmt(g18);document.getElementById('rt24').textContent='₹'+(g24/10).toFixed(0)+'/g';document.getElementById('rt22').textContent='₹'+(g22/10).toFixed(0)+'/g';document.getElementById('rt18').textContent='₹'+(g18/10).toFixed(0)+'/g';document.getElementById('hfc24').textContent='₹ '+(g24/10).toFixed(0)+'/g'}
+tickRates();setInterval(tickRates,7000);
+// CART
+let cart=[];
+function toggleCart(){document.getElementById('cside').classList.toggle('open');document.getElementById('cov').classList.toggle('open')}
+function addC(name,price,icon){cart.push({name,price,icon,id:Date.now()});renderCart();xt(name+' added to cart')}
+function addCFromCard(pid){
+  const name=document.getElementById('name-'+pid).textContent;
+  const price=document.getElementById('price-'+pid).textContent;
+  const data=adminData[pid];
+  const icon=(data&&data.img)?'':'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="15" r="6"/><path d="M9 9 12 3l3 6"/></svg>';
+  addC(name,price,icon);
+}
+function remC(id){cart=cart.filter(c=>c.id!==id);renderCart()}
+function renderCart(){
+  const el=document.getElementById('cbody'),badge=document.getElementById('cn');
+  badge.textContent=cart.length;
+  if(!cart.length){el.innerHTML='<div class="cempty"><span class="ce-i">◇</span><p class="ce-p">Cart awaits royalty</p></div>';document.getElementById('ctot').textContent='₹ 0';return}
+  el.innerHTML=cart.map(c=>`<div class="citem"><div class="ci-img">${c.icon||'<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"12\" cy=\"15\" r=\"6\"/><path d=\"M9 9 12 3l3 6\"/></svg>'}</div><div style="flex:1"><div class="ci-n">${c.name}</div><div class="ci-p">${c.price}</div></div><button class="ci-rm" onclick="remC(${c.id})">✕</button></div>`).join('');
+  const tot=cart.reduce((a,c)=>{const n=parseInt(c.price.replace(/[^\d]/g,''));return a+(isNaN(n)?0:n)},0);
+  document.getElementById('ctot').textContent='₹ '+tot.toLocaleString('en-IN');
+}
+// WISHLIST
+function wsh(btn){btn.classList.toggle('on');btn.textContent=btn.classList.contains('on')?'♥':'♡';xt(btn.classList.contains('on')?'Added to Wishlist ♥':'Removed from Wishlist')}
+// FILTER
+function filterP(cat,btn){
+  if(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('act'));btn.classList.add('act')}
+  document.querySelectorAll('.pc').forEach(c=>{const cats=c.dataset.cat||'';(cat==='all'||cats.includes(cat))?c.classList.remove('hidden'):c.classList.add('hidden')});
+  if(btn)document.getElementById('products').scrollIntoView({behavior:'smooth'});
+}
+// TOAST
+let xT;
+function xt(msg){const el=document.getElementById('xtst');el.textContent=msg;el.classList.add('show');clearTimeout(xT);xT=setTimeout(()=>el.classList.remove('show'),2800)}
+// STORE SELECT
+function selStore(el,city){document.querySelectorAll('.sl').forEach(s=>s.classList.remove('act'));el.classList.add('act');document.getElementById('maplbl').textContent=city+' ★';xt('Selected: '+city+' showroom')}
+// AI CHAT
+const aiR=['I found some wonderful options! Let me show you our best matches from this collection.','Great choice! For that occasion, I recommend our Signature Collection. Specific budget in mind? <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2.2C10.5 5.2 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>','Based on your preferences, our Maharani Series in 22K gold is perfect. Add to wishlist?','Absolutely! Our custom design team can create exactly that. Book a free consultation with our master artisan.','Beautiful gift idea! We also offer complimentary luxury packaging and a personalised message card. <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="11" rx="1"/><path d="M3 9V6h18v3M12 9v11M12 9c-1.5-4-6-5-6-2 0 1.3 1.3 2 3 2M12 9c1.5-4 6-5 6-2 0 1.3-1.3 2-3 2"/></svg>'];
+let aI=0;
+function aiSend(){const f=document.getElementById('awfield'),msgs=document.getElementById('awmsgs');const txt=f.value.trim();if(!txt)return;msgs.innerHTML+=`<div class="awm usr">${txt}</div>`;f.value='';msgs.scrollTop=msgs.scrollHeight;setTimeout(()=>{msgs.innerHTML+=`<div class="awm bot">${aiR[aI%aiR.length]}</div>`;aI++;msgs.scrollTop=msgs.scrollHeight},800)}
+function aiChat(txt){document.getElementById('awfield').value=txt;document.getElementById('aiass').scrollIntoView({behavior:'smooth'});setTimeout(aiSend,400)}
+document.getElementById('awfield').addEventListener('keydown',e=>{if(e.key==='Enter')aiSend()});
+// PRICE ESTIMATOR
+const GR={24:6284,22:5761,18:4713,14:3664};const MK={necklace:15,ring:18,bangle:12,earring:20,chain:8,pendant:22,bridal:12};
+function updEst(){const tp=document.getElementById('jtype').value,pu=parseInt(document.getElementById('jpurity').value)||22,wt=parseFloat(document.getElementById('jwt').value)||0;if(!wt||!tp){['est-g','est-m','est-t','est-total'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent='₹ —'});return}const gv=GR[pu]*wt,mk=gv*((MK[tp]||14)/100),sub=gv+mk,gst=sub*.03,tot=sub+gst;const fmt=v=>'₹ '+Math.round(v).toLocaleString('en-IN');document.getElementById('est-g').textContent=fmt(gv);document.getElementById('est-m').textContent=fmt(mk);document.getElementById('est-t').textContent=fmt(gst);document.getElementById('est-total').textContent=fmt(tot)}
+function selOpt(btn){btn.parentElement.querySelectorAll('.dfopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel')}
+// EMI CALC
+function calcE(){const P=parseFloat(document.getElementById('ep').value)||0,D=parseFloat(document.getElementById('ed').value)||0,n=parseInt(document.getElementById('et').value),r=parseFloat(document.getElementById('er').value)/100/12;const ln=P-D;if(ln<=0){xt('Please enter a valid price');return}const emi=r===0?ln/n:ln*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);document.getElementById('erv').textContent='₹ '+Math.round(emi).toLocaleString('en-IN');document.getElementById('ern').textContent='Total: ₹ '+Math.round(emi*n).toLocaleString('en-IN')+' over '+n+' months';document.getElementById('ecres').classList.add('show')}
+// PARALLAX
+window.addEventListener('scroll',()=>{const g=document.querySelector('.hgrid');if(g)g.style.transform='translateY('+(scrollY*.18)+'px)'});
+window.addEventListener('resize',()=>{dmc('mc1',true);dmc('mc2',true);dmc('mc3',true);dmc('mc4',false);dMainChart()});
+
+/* ═══════════════════════════════════
+   ADMIN / OWNER PANEL
+   Default password: 123456
+   Owner can change it from the console via:
+   localStorage.setItem('rgp_admin_pw','newpassword')
+═══════════════════════════════════ */
+const ADMIN_PW_KEY='rgp_admin_pw';
+const ADMIN_DATA_KEY='rgp_product_data';
+const DEFAULT_ADMIN_PW='123456';
+
+function getAdminPw(){return localStorage.getItem(ADMIN_PW_KEY)||DEFAULT_ADMIN_PW}
+
+// Load any saved product overrides (image/name/price) from localStorage
+let adminData={};
+try{adminData=JSON.parse(localStorage.getItem(ADMIN_DATA_KEY)||'{}')}catch(e){adminData={}}
+
+// Apply saved overrides to the page on load
+function applyAdminData(){
+  Object.keys(adminData).forEach(pid=>{
+    const d=adminData[pid];
+    const imgEl=document.getElementById('img-'+pid);
+    const nameEl=document.getElementById('name-'+pid);
+    const priceEl=document.getElementById('price-'+pid);
+    if(imgEl&&d.img){
+      imgEl.style.backgroundImage="linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('"+d.img+"')";
+      imgEl.classList.add('has-photo');
+      imgEl.innerHTML='<div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>';
+    }
+    if(nameEl&&d.name)nameEl.textContent=d.name;
+    if(priceEl&&d.price)priceEl.textContent=d.price;
+  });
+}
+applyAdminData();
+
+// Whether owner mode is currently unlocked (session only, resets on reload for security)
+let adminUnlocked=false;
+
+function openAdminLogin(){
+  if(adminUnlocked){ // already unlocked -> just toggle off
+    adminLogout();
+    return;
+  }
+  document.getElementById('admin-login-ov').classList.add('show');
+  document.getElementById('admin-pw-err').classList.remove('show');
+  const inp=document.getElementById('admin-pw-input');
+  inp.value='';
+  setTimeout(()=>inp.focus(),100);
+}
+function closeAdminLogin(){document.getElementById('admin-login-ov').classList.remove('show')}
+
+function checkAdminPw(){
+  const entered=document.getElementById('admin-pw-input').value;
+  if(entered===getAdminPw()){
+    adminUnlocked=true;
+    document.body.classList.add('admin-on');
+    document.getElementById('admin-trigger').classList.add('active');
+    document.getElementById('admin-pill').classList.add('show');
+    closeAdminLogin();
+    xt('Owner mode unlocked — click Edit on any item');
+  }else{
+    document.getElementById('admin-pw-err').classList.add('show');
+    document.getElementById('admin-pw-input').value='';
+    document.getElementById('admin-pw-input').focus();
+  }
+}
+document.getElementById('admin-pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkAdminPw()});
+
+function adminLogout(){
+  adminUnlocked=false;
+  document.body.classList.remove('admin-on');
+  document.getElementById('admin-trigger').classList.remove('active');
+  document.getElementById('admin-pill').classList.remove('show');
+  xt('Owner mode locked');
+}
+
+// EDIT MODAL
+let currentEditPid=null;
+let pendingImageDataUrl=null;
+
+function openEdit(pid){
+  if(!adminUnlocked){xt('Please unlock owner mode first');return}
+  currentEditPid=pid;
+  pendingImageDataUrl=null;
+  const nameEl=document.getElementById('name-'+pid);
+  const priceEl=document.getElementById('price-'+pid);
+  const imgEl=document.getElementById('img-'+pid);
+  document.getElementById('edit-modal-sub').textContent='Editing: '+nameEl.textContent;
+  document.getElementById('edit-name-input').value=nameEl.textContent;
+  document.getElementById('edit-price-input').value=priceEl.textContent;
+  const preview=document.getElementById('edit-preview');
+  const bgImg=imgEl.style.backgroundImage;
+  const urlMatch=bgImg.match(/url\(["']?(.*?)["']?\)/);
+  if(urlMatch&&urlMatch[1]){
+    preview.style.backgroundImage="url('"+urlMatch[1]+"')";
+    preview.innerHTML='';
+  }else{
+    preview.style.backgroundImage='';
+    preview.innerHTML='<span class="am-preview-hint">No image selected yet</span>';
+  }
+  document.getElementById('admin-edit-ov').classList.add('show');
+}
+function closeEdit(){
+  document.getElementById('admin-edit-ov').classList.remove('show');
+  currentEditPid=null;
+  pendingImageDataUrl=null;
+}
+function handleEditFile(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  if(file.size>3*1024*1024){xt('Image too large — please use under 3MB');return}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    pendingImageDataUrl=e.target.result;
+    const preview=document.getElementById('edit-preview');
+    preview.style.backgroundImage="url('"+pendingImageDataUrl+"')";
+    preview.innerHTML='';
+  };
+  reader.readAsDataURL(file);
+}
+function clearEditImage(){
+  pendingImageDataUrl='';
+  const preview=document.getElementById('edit-preview');
+  preview.style.backgroundImage='';
+  preview.innerHTML='<span class="am-preview-hint">Image will be removed on save</span>';
+}
+function saveEdit(){
+  if(!currentEditPid)return;
+  const pid=currentEditPid;
+  const newName=document.getElementById('edit-name-input').value.trim();
+  const newPrice=document.getElementById('edit-price-input').value.trim();
+  if(!newName||!newPrice){xt('Please fill in name and price');return}
+  if(!adminData[pid])adminData[pid]={};
+  adminData[pid].name=newName;
+  adminData[pid].price=newPrice;
+  if(pendingImageDataUrl!==null){
+    adminData[pid].img=pendingImageDataUrl; // can be '' to clear
+  }
+  localStorage.setItem(ADMIN_DATA_KEY,JSON.stringify(adminData));
+  // reflect immediately
+  document.getElementById('name-'+pid).textContent=newName;
+  document.getElementById('price-'+pid).textContent=newPrice;
+  const imgEl=document.getElementById('img-'+pid);
+  if(pendingImageDataUrl){
+    imgEl.style.backgroundImage="linear-gradient(180deg,rgba(5,3,1,.05) 0%,rgba(5,3,1,.75) 100%),url('"+pendingImageDataUrl+"')";
+    imgEl.classList.add('has-photo');
+    if(!imgEl.querySelector('.pc-wish'))imgEl.innerHTML='<div class="pc-glow"></div><button class="pc-wish" onclick="wsh(this)">♡</button>';
+  }else if(pendingImageDataUrl===''){
+    imgEl.style.backgroundImage='';
+    imgEl.classList.remove('has-photo');
+  }
+  closeEdit();
+  xt('Saved — changes are now live');
+}
+function resetEdit(){
+  if(!currentEditPid)return;
+  if(adminData[currentEditPid]){
+    delete adminData[currentEditPid];
+    localStorage.setItem(ADMIN_DATA_KEY,JSON.stringify(adminData));
+  }
+  xt('Item reset — reloading page');
+  setTimeout(()=>location.reload(),900);
+}
+// close modals on overlay click (not on modal box itself)
+document.getElementById('admin-login-ov').addEventListener('click',e=>{if(e.target.id==='admin-login-ov')closeAdminLogin()});
+document.getElementById('admin-edit-ov').addEventListener('click',e=>{if(e.target.id==='admin-edit-ov')closeEdit()});
+// cursor hover for admin elements
+document.querySelectorAll('#admin-trigger,.admin-edit-btn,.am-close,.am-submit,.am-cancel-btn,.am-upload-btn,.am-reset-link,#admin-pill button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+</script>
+</body>
+</html>
